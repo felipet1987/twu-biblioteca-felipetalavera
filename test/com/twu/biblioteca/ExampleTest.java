@@ -35,23 +35,23 @@ public class ExampleTest {
         Librarian l = new Librarian();
         l.addBookList(bookList);
 
-        assertEquals(getExampleBookList(),l.bookListToString());
+        assertEquals(getExampleBookList(),l.showBooks());
     }
-
-
-
-
-
 
 
     private List<Book> getBookList() {
         List<Book> bookList = new ArrayList<Book>();
-        bookList.add(new Book("libro1", "Author 1",2018));
-        bookList.add(new Book("libro2", "Author 2", 2018));
+        bookList.add(new Book("libro1", "Author1",2018));
+        bookList.add(new Book("libro2", "Author2", 2018));
         return bookList;
     }
 
     private String getExampleBookList() {
-        return "1,libro1\n" + "2,libro2\n";
+        String message = "";
+        message+="Id:Name:Author:Year\n";
+        message+="1:libro1:Author1:2018\n";
+        message+="2:libro2:Author2:2018\n";
+        return message;
+
     }
 }

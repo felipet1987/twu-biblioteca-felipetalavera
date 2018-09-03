@@ -17,4 +17,13 @@ public class BookTest {
         assertEquals("Author 1",book.getAuthor());
         assertEquals(2018,book.getYear());
     }
+
+    @Test
+    public void bookToString() {
+        Book book = new Book("Libro 1","Author 1",2018);
+
+        String result = book.toString();
+        assertEquals("Libro 1:Author 1:2018",result);
+
+    }
 }

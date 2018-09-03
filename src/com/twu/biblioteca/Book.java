@@ -22,4 +22,8 @@ public class Book {
         return this.year;
     }
 
+    @Override
+    public String toString() {
+        return name + ":" + author + ":" + year;
+    }
 }

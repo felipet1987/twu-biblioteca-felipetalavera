@@ -13,10 +13,11 @@ public class Librarian {
 
 
 
-    public String bookListToString() {
-        String message = "";
+    public String showBooks() {
+        String message = "Id:Name:Author:Year\n";
+
         for (int i = 0; i <bookList.size() ; i++) {
-            message += (i + 1) + "," + bookList.get(i).getName() + "\n";
+            message += (i + 1) +":"+ bookList.get(i).toString()+"\n";
         }
         return message;
     }
