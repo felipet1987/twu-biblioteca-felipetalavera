@@ -15,19 +15,19 @@ public class MenuTest {
 
         BookRepository repo = new DummyRepository();
         BookMenu menu = new BookMenu(repo);
-        String[][] bookListView = menu.getBookd();
+        List<String[]> bookListView = menu.getBooks();
 
 
+        String[] expected = {"0","Name1","Author1","2018"};
 
+        String[] book = bookListView.get(0);
 
+        assertEquals(expected[0],book[0]);
+        assertEquals(expected[1],book[1]);
+        assertEquals(expected[2],book[2]);
+        assertEquals(expected[3],book[3]);
 
-
-        String[][] expected = {{"0","Name1","Author1","2018"}};
-
-        assertEquals(expected[0][0],bookListView[0][0]);
-        assertEquals(expected[0][1],bookListView[0][1]);
-        assertEquals(expected[0][2],bookListView[0][2]);
-        assertEquals(expected[0][3],bookListView[0][3]);
+        assertEquals(1,bookListView.size());
 
 
 
@@ -62,7 +62,7 @@ public class MenuTest {
     }
 
     @Test
-    public void InvalidMenuOption() {
+    public void invalidMenuOption() {
 
 
         BookRepository repo = new DummyRepository();
@@ -75,8 +75,7 @@ public class MenuTest {
     }
 
     @Test
-    public void checkoutBook() {
-
+    public void checkout() {
 
     }
 
@@ -87,7 +86,9 @@ public class MenuTest {
 
             List<Book> booklist = new ArrayList<Book>();
 
-            booklist.add(new Book("Name1","Author1",2018));
+            booklist.add(new Book("Name1","Author1",2018,false));
+            booklist.add(new Book("Name2","Author2",2018,true));
+
 
             return booklist;
         }
