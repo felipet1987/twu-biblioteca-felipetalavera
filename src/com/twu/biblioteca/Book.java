@@ -1,12 +1,10 @@
 package com.twu.biblioteca;
 
-import static com.sun.tools.javac.jvm.ByteCodes.ret;
-
 public class Book {
     private final String name;
     private final String author;
     private final int year;
-    private final boolean checkedOut;
+    private boolean checkedOut;
 
     public String getName() {
         return name;
@@ -20,7 +18,7 @@ public class Book {
         return year;
     }
 
-    public Book(String name, String author, int year, boolean checkedOut) {
+    public Book(int id, String name, String author, int year, boolean checkedOut) {
         this.name = name;
         this.author = author;
         this.year = year;
@@ -29,5 +27,13 @@ public class Book {
 
     public boolean isCheckedOut() {
         return checkedOut;
+    }
+
+    public void returnBook() {
+        this.checkedOut = false;
+    }
+
+    public void checkOutBook() {
+        this.checkedOut = true;
     }
 }

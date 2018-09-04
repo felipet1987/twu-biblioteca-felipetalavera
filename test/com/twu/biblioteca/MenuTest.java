@@ -13,7 +13,7 @@ public class MenuTest {
     @Test
     public void getBooks() {
 
-        BookRepository repo = new DummyRepository();
+        BookRepository repo = new TestRepository();
         BookMenu menu = new BookMenu(repo);
         List<String[]> bookListView = menu.getBooks();
 
@@ -36,7 +36,7 @@ public class MenuTest {
     @Test
     public void WelcomeMessage() {
 
-        BookRepository repo = new DummyRepository();
+        BookRepository repo = new TestRepository();
         BookMenu menu = new BookMenu(repo);
         String message = menu.start();
         assertEquals("Welcome",message);
@@ -48,7 +48,7 @@ public class MenuTest {
     public void getMenu() {
 
 
-        BookRepository repo = new DummyRepository();
+        BookRepository repo = new TestRepository();
         BookMenu menu = new BookMenu(repo);
 
 
@@ -65,7 +65,7 @@ public class MenuTest {
     public void invalidMenuOption() {
 
 
-        BookRepository repo = new DummyRepository();
+        BookRepository repo = new TestRepository();
         BookMenu menu = new BookMenu(repo);
 
 
@@ -75,22 +75,98 @@ public class MenuTest {
     }
 
     @Test
-    public void checkout() {
+    public void returnBook () {
+        BookRepository repo = new TestRepository();
+        BookMenu menu = new BookMenu(repo);
+
+        List<String[]> list = menu.getBooks();
+        assertEquals(1,list.size());
+
+        int id = 1;
+        menu.returnBook(id);
+
+        list = menu.getBooks();
+        assertEquals(2,list.size());
 
     }
 
-    private class DummyRepository implements BookRepository {
+    @Test
+    public void checkoutBook() {
+        BookRepository repo = new Test2Repository();
+        BookMenu menu = new BookMenu(repo);
+
+        List<String[]> list = menu.getBooks();
+        assertEquals(2,list.size());
+
+        int id = 1;
+        menu.checkOutBook(id);
+        list = menu.getBooks();
+        assertEquals(1,list.size());
+
+    }
+
+    private class TestRepository implements BookRepository {
+        private ArrayList<Book> booklist;
+
+        public TestRepository() {
+
+            booklist = new ArrayList<Book>();
+
+            booklist.add(new Book(1, "Name1","Author1",2018,false));
+            booklist.add(new Book(2, "Name2","Author2",2018,true));
+
+
+
+        }
+
+
+
+
         @Override
         public List<Book> getBookList() {
 
-
-            List<Book> booklist = new ArrayList<Book>();
-
-            booklist.add(new Book("Name1","Author1",2018,false));
-            booklist.add(new Book("Name2","Author2",2018,true));
-
-
             return booklist;
+        }
+
+        @Override
+        public void returnBook(int id) {
+            booklist.get(id).returnBook();
+;        }
+
+        @Override
+        public void checkOutBook(int id) {
+
+        }
+    }
+
+    private class Test2Repository implements BookRepository {
+
+        private final ArrayList<Book> booklist;
+
+        public Test2Repository() {
+
+            booklist = new ArrayList<Book>();
+
+            booklist.add(new Book(1,"Name1","Author1",2018,false));
+            booklist.add(new Book(2,"Name2","Author2",2018,false));
+
+
+
+        }
+
+        @Override
+        public List<Book> getBookList() {
+            return booklist;
+        }
+
+        @Override
+        public void returnBook(int id) {
+
+        }
+
+        @Override
+        public void checkOutBook(int id) {
+            booklist.get(id).checkOutBook();
         }
     }
 }

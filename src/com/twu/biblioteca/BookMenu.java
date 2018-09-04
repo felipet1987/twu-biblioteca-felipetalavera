@@ -10,13 +10,13 @@ public class BookMenu {
 
     public static final String WELCOME = "Welcome";
     private final BookRepository repo;
-    private final List<Book> list;
+    private List<Book> list;
     private List<String> menu;
 
     public BookMenu(BookRepository repo) {
         this.repo = repo;
         menu = setMenuOptions();
-        list = repo.getBookList();
+
 
     }
 
@@ -26,7 +26,7 @@ public class BookMenu {
 
     public List<String[]> getBooks() {
 
-
+        list = repo.getBookList();
         List<String[]> bookListView = BookListToView();
         return bookListView;
     }
@@ -61,5 +61,14 @@ public class BookMenu {
 
     public boolean isValid(String option) {
         return menu.contains(option);
+    }
+
+
+    public void returnBook(int id) {
+        repo.returnBook(id);
+    }
+
+    public void checkOutBook(int id) {
+        repo.checkOutBook(id);
     }
 }
