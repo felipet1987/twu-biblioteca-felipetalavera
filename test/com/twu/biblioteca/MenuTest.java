@@ -11,12 +11,15 @@ public class MenuTest {
 
 
     @Test
-    public void getBooksCmd() {
+    public void getBooks() {
 
         BookRepository repo = new DummyRepository();
-        GetBooksCmd getBooks = new GetBooksCmd(repo);
+        BookMenu menu = new BookMenu(repo);
+        String[][] bookListView = menu.getBookd();
 
-        String[][] bookListView = getBooks.execute();
+
+
+
 
 
         String[][] expected = {{"0","Name1","Author1","2018"}};
@@ -31,25 +34,51 @@ public class MenuTest {
     }
 
     @Test
-    public void ShowMessageCmd() {
-        WelcomeCmd welcome = new WelcomeCmd();
-        String message = welcome.execute();
+    public void WelcomeMessage() {
+
+        BookRepository repo = new DummyRepository();
+        BookMenu menu = new BookMenu(repo);
+        String message = menu.start();
         assertEquals("Welcome",message);
 
     }
 
 
     @Test
-    public void showMenu() {
-        getMenuCmd getMenu = new getMenuCmd();
-        String[]  menuView = getMenu.execute();
+    public void getMenu() {
+
+
+        BookRepository repo = new DummyRepository();
+        BookMenu menu = new BookMenu(repo);
+
+
+
+
+        String[]  menuView = menu.getMenu();
+
 
         assertEquals("List Books",menuView[0]);
 
     }
 
+    @Test
+    public void InvalidMenuOption() {
 
 
+        BookRepository repo = new DummyRepository();
+        BookMenu menu = new BookMenu(repo);
+
+
+        assertEquals(true,menu.isValid("List Books"));
+        assertEquals(false,menu.isValid("List "));
+
+    }
+
+    @Test
+    public void checkoutBook() {
+
+
+    }
 
     private class DummyRepository implements BookRepository {
         @Override
