@@ -14,11 +14,11 @@ public class MenuTest {
     public void getBooks() {
 
         BookRepository repo = new TestRepository();
-        BookMenu menu = new BookMenu(repo);
+        BookMenu menu = new ListBookMenu(repo);
         List<String[]> bookListView = menu.getBooks();
 
 
-        String[] expected = {"0","Name1","Author1","2018"};
+        String[] expected = {"1","Name1","Author1","2018"};
 
         String[] book = bookListView.get(0);
 
@@ -37,7 +37,7 @@ public class MenuTest {
     public void WelcomeMessage() {
 
         BookRepository repo = new TestRepository();
-        BookMenu menu = new BookMenu(repo);
+        BookMenu menu = new ListBookMenu(repo);
         String message = menu.start();
         assertEquals("Welcome",message);
 
@@ -49,7 +49,7 @@ public class MenuTest {
 
 
         BookRepository repo = new TestRepository();
-        BookMenu menu = new BookMenu(repo);
+        BookMenu menu = new ListBookMenu(repo);
 
 
 
@@ -66,7 +66,7 @@ public class MenuTest {
 
 
         BookRepository repo = new TestRepository();
-        BookMenu menu = new BookMenu(repo);
+        BookMenu menu = new ListBookMenu(repo);
 
 
         assertEquals(true,menu.isValid("List Books"));
@@ -75,25 +75,24 @@ public class MenuTest {
     }
 
     @Test
-    public void returnBook () {
+    public void returnBook () throws Exception {
         BookRepository repo = new TestRepository();
-        BookMenu menu = new BookMenu(repo);
+        BookMenu menu = new ListBookMenu(repo);
 
-        List<String[]> list = menu.getBooks();
-        assertEquals(1,list.size());
 
-        int id = 1;
+        int id = 2;
+
         menu.returnBook(id);
 
-        list = menu.getBooks();
-        assertEquals(2,list.size());
+
+
 
     }
 
     @Test
-    public void checkoutBook() {
+    public void checkoutBook() throws Exception {
         BookRepository repo = new Test2Repository();
-        BookMenu menu = new BookMenu(repo);
+        BookMenu menu = new ListBookMenu(repo);
 
         List<String[]> list = menu.getBooks();
         assertEquals(2,list.size());
@@ -102,6 +101,27 @@ public class MenuTest {
         menu.checkOutBook(id);
         list = menu.getBooks();
         assertEquals(1,list.size());
+
+    }
+
+    @Test(expected = Exception.class)
+    public void failCheckout() throws Exception {
+        BookRepository repo = new TestRepository();
+        BookMenu menu = new ListBookMenu(repo);
+
+        int id = 2;
+        menu.checkOutBook(id);
+
+
+
+    }
+
+    @Test(expected = Exception.class)
+    public void failReturn() throws Exception {
+        BookRepository repo = new TestRepository();
+        BookMenu menu = new ListBookMenu(repo);
+        int id = 1;
+        menu.returnBook(id);
 
     }
 
@@ -130,12 +150,29 @@ public class MenuTest {
 
         @Override
         public void returnBook(int id) {
-            booklist.get(id).returnBook();
+
+            Book book = find(id);
+
+            book.returnBook();
 ;        }
 
         @Override
         public void checkOutBook(int id) {
 
+        }
+
+        @Override
+        public boolean isCheckedOut(int id) {
+            return find(id).isCheckedOut();
+        }
+
+        private Book find(int id) {
+            for (int i = 0; i < booklist.size(); i++) {
+                if(booklist.get(i).getId() == id){
+                    return booklist.get(i);
+                }
+            }
+            return new Book(-1,"","",-1,true);
         }
     }
 
@@ -166,7 +203,25 @@ public class MenuTest {
 
         @Override
         public void checkOutBook(int id) {
-            booklist.get(id).checkOutBook();
+            find(id).checkOutBook();
+        }
+
+        @Override
+        public boolean isCheckedOut(int id) {
+
+            Book book = find(id);
+
+            return book.isCheckedOut();
+        }
+
+
+        private Book find(int id) {
+            for (int i = 0; i < booklist.size(); i++) {
+                if(booklist.get(i).getId() == id){
+                    return booklist.get(i);
+                }
+            }
+            return new Book(-1,"","",-1,true);
         }
     }
 }

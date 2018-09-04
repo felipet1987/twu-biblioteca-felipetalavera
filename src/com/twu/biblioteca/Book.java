@@ -4,6 +4,7 @@ public class Book {
     private final String name;
     private final String author;
     private final int year;
+    private final int id;
     private boolean checkedOut;
 
     public String getName() {
@@ -23,6 +24,7 @@ public class Book {
         this.author = author;
         this.year = year;
         this.checkedOut = checkedOut;
+        this.id = id;
     }
 
     public boolean isCheckedOut() {
@@ -35,5 +37,9 @@ public class Book {
 
     public void checkOutBook() {
         this.checkedOut = true;
+    }
+
+    public int getId() {
+        return this.id;
     }
 }

@@ -8,4 +8,6 @@ public interface BookRepository {
     void returnBook(int id);
 
     void checkOutBook(int id);
+
+    boolean isCheckedOut(int id);
 }
