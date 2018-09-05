@@ -49,6 +49,8 @@ public class BookController {
         int option = input.getInt();
         if(option == 0){
             showBooks();
+        }else{
+            output.print("Invalid option");
         }
     }
 
@@ -63,10 +65,25 @@ public class BookController {
         int id = input.getInt();
         try {
             menu.checkOutBook(id);
-            output.print("Successful");
+            output.print("Thank you! Enjoy the book");
         } catch (Exception e) {
-            output.print("Unsuccessful");
+            output.print("That book is not available.");
 
         }
+    }
+
+    public void returnBook() {
+        int id = input.getInt();
+        try {
+            menu.returnBook(id);
+            output.print("Thank you for returning the book.");
+        } catch (Exception e) {
+            output.print("That is not a valid book to return.");
+
+        }
+    }
+
+    public void exit() {
+        output.exit();
     }
 }
