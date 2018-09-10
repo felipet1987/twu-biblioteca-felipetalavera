@@ -49,11 +49,12 @@ public class ControllerTest {
 
         List<String> out = ((TestOutput) output).getOutput();
 
-        assertEquals("ID:NAME:AUTHOR:YEAR", out.get(0));
+        assertEquals(BOOK_HEADER, out.get(0));
         assertEquals("1:name:author:2018", out.get(1));
 
 
     }
+
 
     @Test
     public void shouldShowOptionforBooksList() {

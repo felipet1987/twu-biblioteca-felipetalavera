@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.core.AppMenu;
 import com.twu.biblioteca.core.BookRepository;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
@@ -9,16 +10,22 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class MenuTest {
-
-
     public static final String LIST_BOOKS = "List Books";
     public static final String LIST_MOVIES = "List Movies";
+    BookRepository repo;
+    AppMenu menu;
+
+    @Before
+    public void setUp() {
+        repo = new TestRepository();
+        menu = new ListMenu(repo);
+
+    }
 
     @Test
     public void getBooks() {
 
-        BookRepository repo = new TestRepository();
-        AppMenu menu = new ListMenu(repo);
+
         List<String[]> bookListView = menu.getBooks();
 
 
@@ -36,11 +43,10 @@ public class MenuTest {
 
     }
 
+
     @Test
     public void WelcomeMessage() {
 
-        BookRepository repo = new TestRepository();
-        AppMenu menu = new ListMenu(repo);
         String message = menu.start();
         assertEquals("Welcome", message);
 
@@ -49,10 +55,6 @@ public class MenuTest {
 
     @Test
     public void getMenu() {
-
-
-        BookRepository repo = new TestRepository();
-        AppMenu menu = new ListMenu(repo);
 
 
         String[] menuView = menu.getMenu();
@@ -67,9 +69,6 @@ public class MenuTest {
     public void invalidMenuOption() {
 
 
-        BookRepository repo = new TestRepository();
-        AppMenu menu = new ListMenu(repo);
-
         assertEquals(true, menu.isValid("List Books"));
         assertEquals(false, menu.isValid("List "));
 
@@ -77,8 +76,7 @@ public class MenuTest {
 
     @Test
     public void returnBook() throws Exception {
-        BookRepository repo = new TestRepository();
-        AppMenu menu = new ListMenu(repo);
+
 
         int id = 2;
 
@@ -87,8 +85,9 @@ public class MenuTest {
 
     @Test
     public void checkoutBook() throws Exception {
+
         BookRepository repo = new Test2Repository();
-        AppMenu menu = new ListMenu(repo);
+        menu = new ListMenu(repo);
 
         List<String[]> list = menu.getBooks();
         assertEquals(2, list.size());
@@ -102,8 +101,7 @@ public class MenuTest {
 
     @Test(expected = Exception.class)
     public void failCheckout() throws Exception {
-        BookRepository repo = new TestRepository();
-        AppMenu menu = new ListMenu(repo);
+
 
         int id = 2;
         menu.checkOutBook(id);
@@ -113,8 +111,8 @@ public class MenuTest {
 
     @Test(expected = Exception.class)
     public void failReturn() throws Exception {
-        BookRepository repo = new TestRepository();
-        AppMenu menu = new ListMenu(repo);
+
+
         int id = 1;
         menu.returnBook(id);
 
