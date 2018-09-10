@@ -1,19 +1,21 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.model.Book;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class ListBookMenu implements BookMenu {
+public class ListMenu implements AppMenu {
 
 
-    public static final String WELCOME = "Welcome";
+    private static final String WELCOME = "Welcome";
     private final BookRepository repo;
     private List<Book> list;
     private List<String> menu;
 
 
-    public ListBookMenu(BookRepository repo) {
+    public ListMenu(BookRepository repo) {
         this.repo = repo;
         menu = setMenuOptions();
 
@@ -58,8 +60,9 @@ public class ListBookMenu implements BookMenu {
     }
 
     private List<String> setMenuOptions() {
-        menu = new ArrayList<String>();
+        menu = new ArrayList<>();
         menu.add("List Books");
+        menu.add("List Movies");
         return menu;
     }
 

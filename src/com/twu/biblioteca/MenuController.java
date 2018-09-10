@@ -1,19 +1,24 @@
 package com.twu.biblioteca;
 
+
+
 import java.util.List;
 
-public class BookController {
-    private final BookMenu menu;
+public class MenuController {
+    public static final String BOOK_HEADER = "ID:NAME:AUTHOR:YEAR";
+    private final AppMenu menu;
     private final InputPort input;
     private final OutputPort output;
 
-    public BookController(BookMenu menu, InputPort input, OutputPort output) {
+    public MenuController(AppMenu menu, InputPort input, OutputPort output) {
         this.menu =  menu;
         this.input = input;
         this.output = output;
     }
 
     public void showMenu() {
+
+        output.clearScreen();
 
         String welcome = menu.start();
 
@@ -35,12 +40,14 @@ public class BookController {
     public void showBooks() {
         List<String[]> list = menu.getBooks();
 
-        output.print("ID:NAME:AUTHOR:YEAR");
+        output.print(BOOK_HEADER);
         for (int i = 0; i <list.size(); i++) {
             String[] row = list.get(i);
             output.print(row[0]+":"+row[1]+":"+row[2]+":"+row[3]);
 
         }
+        showBookOptions();
+
     }
 
 
@@ -51,6 +58,7 @@ public class BookController {
             showBooks();
         }else{
             output.print("Invalid option");
+            showMenu();
         }
     }
 

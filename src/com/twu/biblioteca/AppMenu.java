@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 import java.util.List;
 
-public interface BookMenu {
+public interface AppMenu {
     String start();
 
     List<String[]> getBooks();
