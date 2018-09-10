@@ -4,7 +4,6 @@ import com.twu.biblioteca.ConsoleInput;
 import com.twu.biblioteca.ConsoleOutput;
 import com.twu.biblioteca.ListMenu;
 import com.twu.biblioteca.MemoryBookRepository;
-import com.twu.biblioteca.core.*;
 
 public class BibliotecaApp {
 
@@ -14,10 +13,10 @@ public class BibliotecaApp {
         AppMenu menu = new ListMenu(repo);
         InputPort input = new ConsoleInput();
         OutputPort output = new ConsoleOutput();
-        MenuController controller = new MenuController(menu,input,output);
+        MenuController controller = new MenuController(menu, input, output);
 
         controller.showMenu();
-        controller.gotoOption();
+        //controller.gotoOption();
 
     }
 }

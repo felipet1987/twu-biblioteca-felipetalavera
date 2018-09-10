@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.model;
 
 public class Movie {
     //name, year, director and movie rating (from 1-10 or unrated).
@@ -46,5 +46,9 @@ public class Movie {
 
     public void checkout() {
         this.checkedOut = true;
+    }
+
+    public void returnThis() {
+        this.checkedOut = false;
     }
 }

@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.core.MovieRepository;
+import com.twu.biblioteca.model.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ public class MemoryMovieRepository implements MovieRepository {
     public MemoryMovieRepository() {
         movies = new ArrayList<>();
         movies.add(new Movie(1, "movie 1",2018,"Director 1",2,false));
+        movies.add(new Movie(2, "movie 2",2018,"Director 2",2,true));
 
     }
 
@@ -36,5 +38,12 @@ public class MemoryMovieRepository implements MovieRepository {
             }
         }
         return new Movie(-1,"",-1,"",-2,false);
+    }
+
+    @Override
+    public void returnMovie(int i) {
+        Movie m = findBy(i);
+        m.returnThis();
+
     }
 }
