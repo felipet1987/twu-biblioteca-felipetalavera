@@ -6,12 +6,18 @@ public class Movie {
     int year;
     String director;
     int rating;
+    private int id;
+    private boolean checkedOut;
 
-    public Movie(String name, int year, String director, int rating) {
+    public Movie(int id, String name, int year, String director, int rating, boolean checkedOut) {
+
+        this.id = id;
         this.name = name;
         this.year = year;
         this.director = director;
         this.rating = rating;
+        this.checkedOut = checkedOut;
+
     }
 
     public String getName() {
@@ -28,5 +34,17 @@ public class Movie {
 
     public int getRating() {
         return rating;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public boolean isCheckedOut() {
+        return this.checkedOut;
+    }
+
+    public void checkout() {
+        this.checkedOut = true;
     }
 }
