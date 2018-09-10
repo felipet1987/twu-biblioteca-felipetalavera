@@ -34,9 +34,20 @@ public class MemoryUserRepository implements UserRepository {
 
         for (User u: users) {
             if(u.getNumber().equals(number) && u.getPassword().equals(password)){
+                u.login();
                 return true;
             }
         }
         return false;
+    }
+
+    @Override
+    public void logout(String number) {
+        for (User u: users) {
+            if(u.getNumber().equals(number)){
+                u.logout();
+            }
+        }
+
     }
 }

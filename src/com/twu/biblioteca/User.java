@@ -6,6 +6,7 @@ public class User {
     private final String phone;
     private String number;
     private String password;
+    private boolean logged;
 
     User(String number, String password, String name, String email, String phone) {
         this.number = number;
@@ -13,6 +14,7 @@ public class User {
         this.email = email;
         this.phone = phone;
         this.password = password;
+        this.logged = false;
     }
 
     String getName() {
@@ -33,5 +35,17 @@ public class User {
 
     String getPassword() {
         return this.password;
+    }
+
+    public boolean isLogged() {
+        return this.logged;
+    }
+
+    public void login() {
+        this.logged = true;
+    }
+
+    public void logout() {
+        this.logged = false;
     }
 }

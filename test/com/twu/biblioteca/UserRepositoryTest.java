@@ -24,9 +24,18 @@ public class UserRepositoryTest {
 
 
         assertEquals(true,repo.login("123-4567","password"));
+        assertEquals(true,repo.findByNumber("123-4567").isLogged());
         assertEquals(false,repo.login("123-4567","pass"));
         assertEquals(false,repo.login("123-45","password"));
 
+
+    }
+
+    @Test
+    public void whenLogoutShouldNotBeLogged() {
+        UserRepository repo = new MemoryUserRepository();
+        repo.logout("123-4567");
+        assertEquals(false,repo.findByNumber("123-4567").isLogged());
 
     }
 }

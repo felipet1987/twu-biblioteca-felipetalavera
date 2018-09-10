@@ -21,7 +21,7 @@ public class ControllerTest {
     MenuController controller;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp(){
 
         menu = new FakeMenu();
         input = new TestInput();
@@ -144,10 +144,7 @@ public class ControllerTest {
 
     @Test
     public void quit() {
-        AppMenu menu = new FakeMenu();
-        InputPort input = new TestInput();
-        OutputPort output = new TestOutput();
-        MenuController controller = new MenuController(menu, input, output);
+
         controller.exit();
         assertEquals(-1, ((TestOutput) output).getExitStatus());
 
