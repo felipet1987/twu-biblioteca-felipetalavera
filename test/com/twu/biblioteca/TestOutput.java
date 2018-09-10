@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.core.OutputPort;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +15,7 @@ class TestOutput implements OutputPort {
         data = new ArrayList<String>();
     }
 
-    public List<String> getData() {
+    public List<String> getOutput() {
 
         return this.data;
     }

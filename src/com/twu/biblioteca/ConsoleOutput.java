@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.core.OutputPort;
+
 public class ConsoleOutput implements OutputPort {
     @Override
     public void print(String message) {

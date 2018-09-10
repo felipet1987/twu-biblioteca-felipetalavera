@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.core.AppMenu;
+import com.twu.biblioteca.core.BookRepository;
 import org.junit.Test;
 
 import java.util.List;
@@ -8,6 +10,9 @@ import static org.junit.Assert.assertEquals;
 
 public class MenuTest {
 
+
+    public static final String LIST_BOOKS = "List Books";
+    public static final String LIST_MOVIES = "List Movies";
 
     @Test
     public void getBooks() {
@@ -53,7 +58,8 @@ public class MenuTest {
         String[] menuView = menu.getMenu();
 
 
-        assertEquals("List Books", menuView[0]);
+        assertEquals(LIST_BOOKS, menuView[0]);
+        assertEquals(LIST_MOVIES, menuView[1]);
 
     }
 

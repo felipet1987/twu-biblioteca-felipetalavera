@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.core.InputPort;
+
 class TestInput implements InputPort {
     private int data;
 
@@ -8,7 +10,7 @@ class TestInput implements InputPort {
 
     }
 
-    void setData(int data) {
+    void setInput(int data) {
         this.data = data;
     }
 

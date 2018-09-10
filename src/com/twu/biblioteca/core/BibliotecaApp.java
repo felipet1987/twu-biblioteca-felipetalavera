@@ -1,4 +1,10 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.core;
+
+import com.twu.biblioteca.ConsoleInput;
+import com.twu.biblioteca.ConsoleOutput;
+import com.twu.biblioteca.ListMenu;
+import com.twu.biblioteca.MemoryBookRepository;
+import com.twu.biblioteca.core.*;
 
 public class BibliotecaApp {
 

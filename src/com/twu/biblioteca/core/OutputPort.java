@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.core;
 
 public interface OutputPort {
     void print(String menu);

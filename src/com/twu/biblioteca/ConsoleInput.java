@@ -1,6 +1,8 @@
 package com.twu.biblioteca;
 
 
+import com.twu.biblioteca.core.InputPort;
+
 import java.util.Scanner;
 
 public class ConsoleInput implements InputPort {

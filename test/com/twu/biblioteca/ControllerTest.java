@@ -1,5 +1,9 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.core.AppMenu;
+import com.twu.biblioteca.core.InputPort;
+import com.twu.biblioteca.core.MenuController;
+import com.twu.biblioteca.core.OutputPort;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,6 +13,8 @@ import static org.junit.Assert.assertEquals;
 
 public class ControllerTest {
 
+    public static final String INVALID_OPTION = "Invalid option";
+    public static final String BOOK_HEADER = "ID:NAME:AUTHOR:YEAR";
     AppMenu menu;
     InputPort input;
     OutputPort output;
@@ -29,19 +35,19 @@ public class ControllerTest {
 
 
         controller.showMenu();
-        List<String> out = ((TestOutput) output).getData();
+        List<String> out = ((TestOutput) output).getOutput();
         assertEquals("Welcome", out.get(0));
 
 
     }
 
     @Test
-    public void showBooks() {
+    public void shouldShowBooksList() {
 
 
         controller.showBooks();
 
-        List<String> out = ((TestOutput) output).getData();
+        List<String> out = ((TestOutput) output).getOutput();
 
         assertEquals("ID:NAME:AUTHOR:YEAR", out.get(0));
         assertEquals("1:name:author:2018", out.get(1));
@@ -50,10 +56,10 @@ public class ControllerTest {
     }
 
     @Test
-    public void showBookOptions() {
+    public void shouldShowOptionforBooksList() {
         controller.showBookOptions();
 
-        List<String> out = ((TestOutput) output).getData();
+        List<String> out = ((TestOutput) output).getOutput();
 
         assertEquals("Choose an option", out.get(0));
         assertEquals("1 . return book", out.get(1));
@@ -62,62 +68,48 @@ public class ControllerTest {
     }
 
     @Test
-    public void choosingShowBooksOption() {
-        AppMenu menu = new FakeMenu();
-        InputPort input = new TestInput();
-        OutputPort output = new TestOutput();
-        MenuController controller = new MenuController(menu, input, output);
+    public void whenUserInputIsZeroShoouldShowBooks() {
 
-        ((TestInput) input).setData(0);
+
+        ((TestInput) input).setInput(0);
         controller.gotoOption();
 
 
-        List<String> out = ((TestOutput) output).getData();
-        assertEquals("ID:NAME:AUTHOR:YEAR", out.get(1));
+        List<String> out = ((TestOutput) output).getOutput();
+        assertEquals(BOOK_HEADER, out.get(1));
 
 
     }
 
     @Test
     public void SuccessfulCheckout() {
-        AppMenu menu = new FakeMenu();
-        InputPort input = new TestInput();
-        OutputPort output = new TestOutput();
-        MenuController controller = new MenuController(menu, input, output);
 
 
-        ((TestInput) input).setData(0);
+        ((TestInput) input).setInput(0);
         controller.checkout();
-        List<String> out = ((TestOutput) output).getData();
+        List<String> out = ((TestOutput) output).getOutput();
         assertEquals("Thank you! Enjoy the book", out.get(0));
 
     }
 
     @Test
     public void UnSuccessfulCheckout() {
-        AppMenu menu = new FakeMenu();
-        InputPort input = new TestInput();
-        OutputPort output = new TestOutput();
-        MenuController controller = new MenuController(menu, input, output);
 
 
-        ((TestInput) input).setData(1);
+        ((TestInput) input).setInput(1);
         controller.checkout();
-        List<String> out = ((TestOutput) output).getData();
+        List<String> out = ((TestOutput) output).getOutput();
         assertEquals("That book is not available.", out.get(0));
 
     }
 
     @Test
     public void SuccessfulReturn() {
-        AppMenu menu = new FakeMenu();
-        InputPort input = new TestInput();
-        OutputPort output = new TestOutput();
-        MenuController controller = new MenuController(menu, input, output);
 
-        ((TestInput) input).setData(0);
+
+        ((TestInput) input).setInput(0);
         controller.returnBook();
-        List<String> out = ((TestOutput) output).getData();
+        List<String> out = ((TestOutput) output).getOutput();
         assertEquals("Thank you for returning the book.", out.get(0));
 
 
@@ -125,14 +117,11 @@ public class ControllerTest {
 
     @Test
     public void UnSuccessfulReturn() {
-        AppMenu menu = new FakeMenu();
-        InputPort input = new TestInput();
-        OutputPort output = new TestOutput();
-        MenuController controller = new MenuController(menu, input, output);
 
-        ((TestInput) input).setData(1);
+
+        ((TestInput) input).setInput(1);
         controller.returnBook();
-        List<String> out = ((TestOutput) output).getData();
+        List<String> out = ((TestOutput) output).getOutput();
         assertEquals("That is not a valid book to return.", out.get(0));
 
 
@@ -141,17 +130,13 @@ public class ControllerTest {
     @Test
     public void invalidOption() {
 
-        AppMenu menu = new FakeMenu();
-        InputPort input = new TestInput();
-        OutputPort output = new TestOutput();
-        MenuController controller = new MenuController(menu, input, output);
 
-        ((TestInput) input).setData(-1);
+        ((TestInput) input).setInput(-1);
         controller.gotoOption();
 
 
-        List<String> out = ((TestOutput) output).getData();
-        assertEquals("Invalid option", out.get(1));
+        List<String> out = ((TestOutput) output).getOutput();
+        assertEquals(INVALID_OPTION, out.get(1));
 
 
     }
