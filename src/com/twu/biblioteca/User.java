@@ -5,27 +5,33 @@ public class User {
     private final String email;
     private final String phone;
     private String number;
+    private String password;
 
-    public User(String number, String name, String email, String phone) {
+    User(String number, String password, String name, String email, String phone) {
         this.number = number;
         this.name = name;
         this.email = email;
         this.phone = phone;
+        this.password = password;
     }
 
-    public String getName() {
+    String getName() {
         return this.name;
     }
 
-    public String getEmail() {
+    String getEmail() {
         return this.email;
     }
 
-    public String getPhone() {
+    String getPhone() {
         return this.phone;
     }
 
-    public String getNumber() {
+    String getNumber() {
         return this.number;
+    }
+
+    String getPassword() {
+        return this.password;
     }
 }

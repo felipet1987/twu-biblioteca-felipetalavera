@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 public class UserRepositoryTest {
     @Test
     public void shouldReturnUserInfo() {
-        //name, email address and phone number
+
         UserRepository repo = new MemoryUserRepository();
         User u = repo.findByNumber("123-4567");
 
@@ -16,5 +16,17 @@ public class UserRepositoryTest {
         assertEquals(u.getName(), "Felipe");
         assertEquals(u.getEmail(), "correo@mail.cl");
         assertEquals(u.getPhone(), "+56-991234567");
+    }
+
+    @Test
+    public void whenLoginShouldBeValid() {
+        UserRepository repo = new MemoryUserRepository();
+
+
+        assertEquals(true,repo.login("123-4567","password"));
+        assertEquals(false,repo.login("123-4567","pass"));
+        assertEquals(false,repo.login("123-45","password"));
+
+
     }
 }

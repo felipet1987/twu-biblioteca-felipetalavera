@@ -12,7 +12,7 @@ public class MemoryUserRepository implements UserRepository {
     public MemoryUserRepository() {
         users = new ArrayList<>();
 
-        users.add(new User("123-4567", "Felipe","correo@mail.cl","+56-991234567"));
+        users.add(new User("123-4567","password" ,"Felipe","correo@mail.cl","+56-991234567"));
 
 
     }
@@ -26,6 +26,17 @@ public class MemoryUserRepository implements UserRepository {
             }
         }
 
-        return new User("", "", "", "");
+        return new User("", "","", "", "");
+    }
+
+    @Override
+    public boolean login(String number, String password) {
+
+        for (User u: users) {
+            if(u.getNumber().equals(number) && u.getPassword()==password){
+                return true;
+            }
+        }
+        return false;
     }
 }
