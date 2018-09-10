@@ -9,7 +9,7 @@ public class MemoryUserRepository implements UserRepository {
 
     private List<User> users;
 
-    public MemoryUserRepository() {
+    MemoryUserRepository() {
         users = new ArrayList<>();
 
         users.add(new User("123-4567","password" ,"Felipe","correo@mail.cl","+56-991234567"));
@@ -33,7 +33,7 @@ public class MemoryUserRepository implements UserRepository {
     public boolean login(String number, String password) {
 
         for (User u: users) {
-            if(u.getNumber().equals(number) && u.getPassword()==password){
+            if(u.getNumber().equals(number) && u.getPassword().equals(password)){
                 return true;
             }
         }
