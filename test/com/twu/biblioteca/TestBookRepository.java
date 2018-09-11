@@ -6,10 +6,10 @@ import com.twu.biblioteca.model.Book;
 import java.util.ArrayList;
 import java.util.List;
 
-class TestRepository implements BookRepository {
+class TestBookRepository implements BookRepository {
     private ArrayList<Book> booklist;
 
-    public TestRepository() {
+    public TestBookRepository() {
 
         booklist = new ArrayList<>();
 
@@ -43,6 +43,11 @@ class TestRepository implements BookRepository {
     @Override
     public boolean isCheckedOut(int id) {
         return find(id).isCheckedOut();
+    }
+
+    @Override
+    public Book findBy(int id) {
+        return null;
     }
 
     private Book find(int id) {

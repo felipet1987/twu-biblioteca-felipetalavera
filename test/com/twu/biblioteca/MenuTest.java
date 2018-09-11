@@ -17,7 +17,7 @@ public class MenuTest {
 
     @Before
     public void setUp() {
-        repo = new TestRepository();
+        repo = new TestBookRepository();
         menu = new ListMenu(repo);
 
     }
@@ -59,7 +59,6 @@ public class MenuTest {
 
         String[] menuView = menu.getMenu();
 
-
         assertEquals(LIST_BOOKS, menuView[0]);
         assertEquals(LIST_MOVIES, menuView[1]);
 
@@ -67,7 +66,6 @@ public class MenuTest {
 
     @Test
     public void invalidMenuOption() {
-
 
         assertEquals(true, menu.isValid("List Books"));
         assertEquals(false, menu.isValid("List "));
@@ -117,6 +115,7 @@ public class MenuTest {
         menu.returnBook(id);
 
     }
+
 
 
 

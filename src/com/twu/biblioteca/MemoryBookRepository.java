@@ -9,33 +9,46 @@ import java.util.List;
 public class MemoryBookRepository implements BookRepository {
 
 
+    private ArrayList<Book> books;
 
+    public MemoryBookRepository() {
+        books = new ArrayList<>();
+
+        books.add(new Book(1, "Book 1", "Author 1", 2000, false));
+        books.add(new Book(2, "Book 2", "Author 1", 2000, true));
+        books.add(new Book(3, "Book 3", "Author 1", 2001, false));
+
+
+    }
 
     @Override
     public List<Book> getBookList() {
-        List<Book> list = new ArrayList<>();
-
-        list.add(new Book(1,"Book 1","Author 1",2000,false));
-        list.add(new Book(2,"Book 2","Author 1",2000,true));
-        list.add(new Book(3,"Book 3","Author 1",2001,false));
-
-
-
-        return list;
+        return books;
     }
 
     @Override
     public void returnBook(int id) {
-
+        findBy(id).returnBook();
     }
 
     @Override
     public void checkOutBook(int id) {
+        findBy(id).checkOutBook();
 
     }
 
     @Override
     public boolean isCheckedOut(int id) {
         return false;
+    }
+
+    @Override
+    public Book findBy(int id) {
+        for (Book b : books) {
+            if(b.getId() == id){
+                return b;
+            }
+        }
+        return new Book(-1,"","",-1,true);
     }
 }

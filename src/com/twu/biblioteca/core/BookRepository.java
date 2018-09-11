@@ -12,4 +12,7 @@ public interface BookRepository {
     void checkOutBook(int id);
 
     boolean isCheckedOut(int id);
+
+    Book findBy(int id);
+
 }

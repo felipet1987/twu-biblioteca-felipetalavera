@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.model;
 
 public class User {
     private final String name;
@@ -8,7 +8,7 @@ public class User {
     private String password;
     private boolean logged;
 
-    User(String number, String password, String name, String email, String phone) {
+    public User(String number, String password, String name, String email, String phone) {
         this.number = number;
         this.name = name;
         this.email = email;
@@ -17,23 +17,23 @@ public class User {
         this.logged = false;
     }
 
-    String getName() {
+    public String getName() {
         return this.name;
     }
 
-    String getEmail() {
+    public String getEmail() {
         return this.email;
     }
 
-    String getPhone() {
+    public String getPhone() {
         return this.phone;
     }
 
-    String getNumber() {
+    public String getNumber() {
         return this.number;
     }
 
-    String getPassword() {
+    public String getPassword() {
         return this.password;
     }
 

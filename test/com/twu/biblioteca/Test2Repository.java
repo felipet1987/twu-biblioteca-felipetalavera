@@ -43,6 +43,11 @@ class Test2Repository implements BookRepository {
         return book.isCheckedOut();
     }
 
+    @Override
+    public Book findBy(int id) {
+        return null;
+    }
+
 
     private Book find(int id) {
         for (int i = 0; i < booklist.size(); i++) {

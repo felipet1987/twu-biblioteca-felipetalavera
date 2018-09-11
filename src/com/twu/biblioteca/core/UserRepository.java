@@ -1,6 +1,6 @@
 package com.twu.biblioteca.core;
 
-import com.twu.biblioteca.User;
+import com.twu.biblioteca.model.User;
 
 public interface UserRepository {
 
