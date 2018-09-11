@@ -27,13 +27,25 @@ public class MemoryBookRepository implements BookRepository {
     }
 
     @Override
-    public void returnBook(int id) {
-        findBy(id).returnBook();
+    public void returnBook(int id) throws Exception {
+        Book b = findBy(id);
+        if (b.isCheckedOut()) {
+            b.returnBook();
+        } else {
+            throw  new Exception();
+        }
     }
 
     @Override
-    public void checkOutBook(int id) {
-        findBy(id).checkOutBook();
+    public void checkOutBook(int id) throws Exception{
+
+        Book b = findBy(id);
+        if(!b.isCheckedOut()){
+            findBy(id).checkOutBook();
+        }else{
+            throw  new Exception();
+        }
+
 
     }
 

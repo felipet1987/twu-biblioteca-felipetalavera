@@ -21,7 +21,7 @@ public class BookRepositoryTest {
     }
 
     @Test
-    public void shouldReturnBook() {
+    public void shouldReturnBook() throws Exception {
         BookRepository repo = new MemoryBookRepository();
         repo.returnBook(2);
 
@@ -30,11 +30,33 @@ public class BookRepositoryTest {
     }
 
     @Test
-    public void shouldCheckout() {
+    public void shouldCheckout() throws Exception {
         BookRepository repo = new MemoryBookRepository();
         repo.checkOutBook(1);
 
         assertEquals(true, repo.findBy(1).isCheckedOut());
 
     }
+
+    @Test(expected = Exception.class)
+    public void failCheckout() throws Exception {
+
+        BookRepository repo = new MemoryBookRepository();
+        int id = 2;
+        repo.checkOutBook(id);
+
+
+    }
+
+    @Test(expected = Exception.class)
+    public void failReturn() throws Exception {
+
+
+        BookRepository repo = new MemoryBookRepository();
+        int id = 1;
+        repo.returnBook(id);
+
+    }
+
+
 }

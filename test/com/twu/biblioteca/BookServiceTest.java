@@ -29,4 +29,54 @@ public class BookServiceTest {
 
     }
 
+    @Test
+    public void SuccessfulCheckout() {
+
+        BookRepository repo = new FakeBookRepository();
+        BookService service = new ListBookService(repo);
+
+        assertEquals("Thank you! Enjoy the book",service.checkout(0));
+
+    }
+
+    @Test
+    public void UnSuccessfulCheckout() {
+
+        BookRepository repo = new FakeBookRepository();
+        BookService service = new ListBookService(repo);
+        assertEquals("That book is not available.", service.checkout(1));
+
+    }
+//
+//    @Test
+//    public void SuccessfulReturn() {
+//
+//
+//        ((TestInput) input).setInput(0);
+//        controller.returnBook();
+//        List<String> out = ((TestOutput) output).getOutput();
+//        assertEquals("Thank you for returning the book.", out.get(0));
+//
+//
+//    }
+//
+//    @Test
+//    public void UnSuccessfulReturn() {
+//
+//
+//        ((TestInput) input).setInput(1);
+//        controller.returnBook();
+//        List<String> out = ((TestOutput) output).getOutput();
+//        assertEquals("That is not a valid book to return.", out.get(0));
+//
+//
+//    }
+
+
+
+
+
+
+
+
 }
