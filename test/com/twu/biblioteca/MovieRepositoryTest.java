@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.core.MovieRepository;
 import com.twu.biblioteca.model.Movie;
+import com.twu.biblioteca.repository.MemoryMovieRepository;
 import org.junit.Test;
 
 import java.util.List;

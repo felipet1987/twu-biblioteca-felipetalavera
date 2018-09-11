@@ -1,7 +1,7 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.service;
 
-import com.twu.biblioteca.core.BookRepository;
-import com.twu.biblioteca.core.BookService;
+import com.twu.biblioteca.BookRepository;
+import com.twu.biblioteca.BookService;
 import com.twu.biblioteca.model.Book;
 
 import java.util.ArrayList;

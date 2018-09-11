@@ -1,6 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.repository;
 
-import com.twu.biblioteca.core.UserRepository;
+import com.twu.biblioteca.UserRepository;
 import com.twu.biblioteca.model.User;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ public class MemoryUserRepository implements UserRepository {
 
     private List<User> users;
 
-    MemoryUserRepository() {
+    public MemoryUserRepository() {
         users = new ArrayList<>();
 
         users.add(new User("123-4567","password" ,"Felipe","correo@mail.cl","+56-991234567"));

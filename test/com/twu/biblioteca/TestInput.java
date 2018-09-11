@@ -1,7 +1,5 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.core.InputPort;
-
 class TestInput implements InputPort {
     private int data;
 

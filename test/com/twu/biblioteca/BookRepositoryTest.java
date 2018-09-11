@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.core.BookRepository;
 import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.repository.MemoryBookRepository;
 import org.junit.Test;
 
 import java.util.List;

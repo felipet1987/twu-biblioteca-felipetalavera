@@ -1,6 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.repository;
 
-import com.twu.biblioteca.core.MovieRepository;
+import com.twu.biblioteca.MovieRepository;
 import com.twu.biblioteca.model.Movie;
 
 import java.util.ArrayList;

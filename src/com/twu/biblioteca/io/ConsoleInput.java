@@ -1,7 +1,7 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.io;
 
 
-import com.twu.biblioteca.core.InputPort;
+import com.twu.biblioteca.InputPort;
 
 import java.util.Scanner;
 

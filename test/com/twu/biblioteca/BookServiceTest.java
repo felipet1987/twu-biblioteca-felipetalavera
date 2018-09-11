@@ -1,7 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.core.BookRepository;
-import com.twu.biblioteca.core.BookService;
+import com.twu.biblioteca.service.ListBookService;
 import org.junit.Test;
 
 import java.util.List;

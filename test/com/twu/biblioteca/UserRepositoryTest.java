@@ -1,7 +1,7 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.core.UserRepository;
 import com.twu.biblioteca.model.User;
+import com.twu.biblioteca.repository.MemoryUserRepository;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

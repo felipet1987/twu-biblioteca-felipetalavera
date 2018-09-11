@@ -1,4 +1,4 @@
-package com.twu.biblioteca.core;
+package com.twu.biblioteca;
 
 import com.twu.biblioteca.model.User;
 

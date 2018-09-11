@@ -1,20 +1,19 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.core.OutputPort;
-
 import java.util.ArrayList;
 import java.util.List;
 
 class TestOutput implements OutputPort {
 
     private List<String> data;
-    private int exitStatus;
 
 
     TestOutput() {
         data = new ArrayList<String>();
     }
 
+
+    @Override
     public List<String> getOutput() {
 
         return this.data;
@@ -26,17 +25,4 @@ class TestOutput implements OutputPort {
         this.data.add(message);
     }
 
-    @Override
-    public void exit() {
-        exitStatus = -1;
-    }
-
-    @Override
-    public void clearScreen() {
-
-    }
-
-    public int getExitStatus() {
-        return exitStatus;
-    }
 }

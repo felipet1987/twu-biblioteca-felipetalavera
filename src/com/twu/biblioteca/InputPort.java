@@ -1,4 +1,4 @@
-package com.twu.biblioteca.core;
+package com.twu.biblioteca;
 
 public interface InputPort {
 
