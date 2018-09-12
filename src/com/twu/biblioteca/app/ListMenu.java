@@ -14,24 +14,26 @@ public class ListMenu implements AppMenu {
     private final OutputPort output;
     private final UserService userService;
     private final BookService bookService;
+    private final MovieService movieService;
     private List<String[]> options;
 
 
-    public ListMenu(InputPort in, OutputPort out, UserService userService, BookService bookService) {
+    public ListMenu(InputPort in, OutputPort out, UserService userService, BookService bookService, MovieService movieService) {
         this.input = in;
         this.output = out;
         options = setMenuOptions();
         this.userService = userService;
         this.bookService = bookService;
+        this.movieService = movieService;
     }
 
 
     private List<String[]> setMenuOptions() {
         options = new ArrayList<>();
-        options.add(new String[]{"0","show book menu"});
-        options.add(new String[]{"1","show movie menu"});
-        options.add(new String[]{"2","show user details"});
-        options.add(new String[]{"3","exit app"});
+        options.add(new String[]{"0", "show book menu"});
+        options.add(new String[]{"1", "show movie menu"});
+        options.add(new String[]{"2", "show user details"});
+        options.add(new String[]{"3", "exit app"});
         return options;
     }
 
@@ -49,7 +51,7 @@ public class ListMenu implements AppMenu {
         String password = input.getInput();
         if (userService.login(number, password)) {
             return true;
-        }else{
+        } else {
             return false;
         }
 
@@ -60,7 +62,7 @@ public class ListMenu implements AppMenu {
         output.print("ID:NAME:AUTHOR:YEAR");
         List<String[]> books = bookService.getBooks();
         for (String[] b : books) {
-            String book = b[0]+":"+b[1]+":"+b[2]+":"+b[3];
+            String book = b[0] + ":" + b[1] + ":" + b[2] + ":" + b[3];
             output.print(book);
         }
         showBookOptions();
@@ -76,25 +78,42 @@ public class ListMenu implements AppMenu {
 
     @Override
     public void executeOption(String option) {
-        if(option == "0"){
+        if (Integer.parseInt(option) == 0) {
             showBookMenu();
             return;
         }
+
+        output.print("Invalid Option");
+        showMenu();
 
     }
 
     @Override
     public void showMenu() {
-        for (String[] o:options) {
-            output.print(o[0]+". "+o[1]);
+        for (String[] o : options) {
+            output.print(o[0] + ". " + o[1]);
         }
 
     }
 
     @Override
     public void showMovieMenu() {
+        output.print("ID:NAME:YEAR:DIRECTOR:RATING");
+
+        List<String[]> movies = movieService.getMovies();
+        for (String[] movie : movies) {
+            output.print(movie[0] + ":" + movie[1] + ":" + movie[2] + ":" + movie[3] + ":" + movie[4]);
+        }
+        showMovieOptions();
+
 
     }
+
+    private void showMovieOptions() {
+        output.print("0 . return movie");
+        output.print("1 . checkout movie");
+    }
+
 
     private void showBookOptions() {
         output.print("0 . return book");
