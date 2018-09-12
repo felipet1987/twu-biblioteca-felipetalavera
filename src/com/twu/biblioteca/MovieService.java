@@ -6,4 +6,6 @@ public interface MovieService {
     List<String[]> getMovies();
 
     String returnMovie(int id);
+
+    String checkout(int id);
 }

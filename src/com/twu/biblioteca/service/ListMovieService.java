@@ -33,4 +33,15 @@ public class ListMovieService implements MovieService {
             return "Thank you for returning the movie.";
         }
     }
+
+    @Override
+    public String checkout(int id){
+        try{
+            repo.checkout(id);
+            return "Thank you! Enjoy the movie";
+        }catch (Exception e){
+            return "That movie is not available.";
+        }
+
+    }
 }

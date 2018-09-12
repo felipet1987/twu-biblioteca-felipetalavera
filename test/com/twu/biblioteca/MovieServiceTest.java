@@ -30,6 +30,26 @@ public class MovieServiceTest {
         assertEquals(1, movieListView.size());
 
     }
+
+
+    @Test
+    public void SuccessfulCheckout() throws Exception {
+
+        MovieRepository repo = new FakeMovieRepository();
+        MovieService service = new ListMovieService(repo);
+
+        assertEquals("Thank you! Enjoy the movie",service.checkout(1));
+
+    }
+
+    @Test
+    public void UnSuccessfulCheckout() throws Exception {
+
+        MovieRepository repo = new FakeMovieRepository();
+        MovieService service = new ListMovieService(repo);
+        assertEquals("That movie is not available.", service.checkout(0));
+
+    }
     @Test
     public void successfulReturn() {
 

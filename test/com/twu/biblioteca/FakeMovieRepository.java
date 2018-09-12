@@ -14,8 +14,10 @@ public class FakeMovieRepository implements MovieRepository {
     }
 
     @Override
-    public void checkout(int i) {
-
+    public void checkout(int id) throws Exception {
+        if(id == 0){
+            throw new Exception();
+        }
     }
 
     @Override
