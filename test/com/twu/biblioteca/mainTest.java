@@ -130,7 +130,7 @@ public class mainTest {
 
 
     @Test
-    public void succesfulCheckout() {
+    public void succesfulBookCheckout() {
         List<String> data = new ArrayList<>();
         data.add("0");
         data.add("1");
@@ -144,11 +144,10 @@ public class mainTest {
         List<String> stream = out.getOutput();
 
         assertEquals("please enter name of book", stream.get(6));
-        assertEquals("Thank you! Enjoy the book", stream.get(7));
-
-
+        assertEquals(globals.THANK_YOU_ENJOY_THE_BOOK, stream.get(7));
 
     }
+
 
 
 }
