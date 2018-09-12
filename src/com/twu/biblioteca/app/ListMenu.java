@@ -72,7 +72,7 @@ public class ListMenu implements AppMenu {
             output.print(book);
         }
         showBookOptions();
-
+        setCurrentOption("0");
     }
 
     @Override
@@ -85,7 +85,8 @@ public class ListMenu implements AppMenu {
     @Override
     public void executeOption(String option) {
 
-        if(this.actualOption == "1"){
+
+        if(this.actualOption == "0"){
             if (Integer.parseInt(option) == 1) {
                 executeCheckout(waitForBookName());
             }

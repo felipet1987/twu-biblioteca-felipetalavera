@@ -134,7 +134,7 @@ public class MenuTest {
         assertEquals("1 . checkout movie", stream.get(3));
 
     }
-    
+
 
 
     @Test
@@ -145,7 +145,7 @@ public class MenuTest {
         in.setInput(data);
 
 
-        menu.setCurrentOption("1");
+        menu.setCurrentOption("0");
         menu.executeOption("1");
 
 
