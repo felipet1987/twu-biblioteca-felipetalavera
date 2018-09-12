@@ -24,9 +24,14 @@ public class MemoryMovieRepository implements MovieRepository {
     }
 
     @Override
-    public void checkout(int i) {
-        Movie m = findBy(i);
-        m.checkout();
+    public void checkout(int id) throws Exception {
+        Movie m = findBy(id);
+        if(!m.isCheckedOut()){
+            m.checkout();
+        }else{
+            throw  new Exception();
+        }
+
     }
 
     @Override
@@ -41,9 +46,14 @@ public class MemoryMovieRepository implements MovieRepository {
     }
 
     @Override
-    public void returnMovie(int i) {
+    public void returnMovie(int i) throws Exception {
         Movie m = findBy(i);
-        m.returnThis();
+        if(m.isCheckedOut()){
+            m.returnThis();
+        }else{
+            throw new Exception();
+        }
+
 
     }
 }

@@ -10,7 +10,6 @@ public class FakeMovieRepository implements MovieRepository {
     public List<Movie> getMovies() {
         List<Movie> list = new ArrayList<>();
         list.add(new Movie(1,"name",2000,"director",3,false));
-
         return list;
     }
 
@@ -25,7 +24,9 @@ public class FakeMovieRepository implements MovieRepository {
     }
 
     @Override
-    public void returnMovie(int i) {
-
+    public void returnMovie(int id) throws Exception{
+        if(id == 0){
+            throw new Exception();
+        }
     }
 }
