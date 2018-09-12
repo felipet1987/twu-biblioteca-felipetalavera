@@ -10,7 +10,6 @@ import com.twu.biblioteca.service.ListBookService;
 import com.twu.biblioteca.service.ListMovieService;
 import com.twu.biblioteca.service.ListUserService;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -129,23 +128,24 @@ public class mainTest {
 
     }
 
-    @Ignore
+
     @Test
     public void succesfulCheckout() {
         List<String> data = new ArrayList<>();
+        data.add("0");
         data.add("1");
-        data.add("1");
+        data.add("Book 1");
         in.setInput(data);
 
         mainController.execute();
         mainController.execute();
 
-        List<String> stream = out.getOutput();
-        //assertEquals("please enter an option", stream.get(0));
-        //        //assertEquals("ID:NAME:YEAR:DIRECTOR:RATING", stream.get(1));
 
-        //assertEquals("please enter an option", stream.get(2));
-        assertEquals("ID:NAME:YEAR:DIRECTOR:RATING", stream.get(3));
+        List<String> stream = out.getOutput();
+
+        assertEquals("please enter name of book", stream.get(6));
+        assertEquals("Thank you! Enjoy the book", stream.get(7));
+
 
 
     }
