@@ -12,4 +12,6 @@ public interface MovieRepository {
     Movie findBy(int i);
 
     void returnMovie(int i) throws Exception;
+
+    int finddIdByName(String name);
 }

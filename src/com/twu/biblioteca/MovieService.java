@@ -8,4 +8,6 @@ public interface MovieService {
     String returnMovie(int id);
 
     String checkout(int id);
+
+    int findByName(String name);
 }

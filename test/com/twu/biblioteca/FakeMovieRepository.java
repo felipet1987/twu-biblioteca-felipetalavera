@@ -31,4 +31,9 @@ public class FakeMovieRepository implements MovieRepository {
             throw new Exception();
         }
     }
+
+    @Override
+    public int finddIdByName(String name) {
+        return 0;
+    }
 }

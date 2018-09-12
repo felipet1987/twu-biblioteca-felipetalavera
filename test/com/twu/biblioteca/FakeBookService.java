@@ -13,6 +13,9 @@ public class FakeBookService implements BookService {
 
     @Override
     public String checkout(int id) {
+        if(id == 1){
+            return globals.THAT_BOOK_IS_NOT_AVAILABLE;
+        }
         return "Thank you! Enjoy the book";
     }
 
@@ -23,6 +26,9 @@ public class FakeBookService implements BookService {
 
     @Override
     public int findByName(String name) {
+        if(name == "nam"){
+            return 1;
+        }
         return 0;
     }
 }

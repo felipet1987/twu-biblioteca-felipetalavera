@@ -2,12 +2,14 @@ package com.twu.biblioteca.service;
 
 import com.twu.biblioteca.MovieRepository;
 import com.twu.biblioteca.MovieService;
+import com.twu.biblioteca.globals;
 import com.twu.biblioteca.model.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListMovieService implements MovieService {
+
     private final MovieRepository repo;
 
     public ListMovieService(MovieRepository repo) {
@@ -28,9 +30,9 @@ public class ListMovieService implements MovieService {
     public String returnMovie(int id) {
         try {
             repo.returnMovie(id);
-            return "That is not a valid movie to return.";
+            return globals.THAT_IS_NOT_A_VALID_MOVIE_TO_RETURN;
         } catch (Exception e) {
-            return "Thank you for returning the movie.";
+            return globals.THANK_YOU_FOR_RETURNING_THE_MOVIE;
         }
     }
 
@@ -38,10 +40,15 @@ public class ListMovieService implements MovieService {
     public String checkout(int id){
         try{
             repo.checkout(id);
-            return "Thank you! Enjoy the movie";
+            return globals.THANK_YOU_ENJOY_THE_MOVIE;
         }catch (Exception e){
-            return "That movie is not available.";
+            return globals.THAT_MOVIE_IS_NOT_AVAILABLE;
         }
 
+    }
+
+    @Override
+    public int findByName(String name) {
+        return repo.finddIdByName(name);
     }
 }

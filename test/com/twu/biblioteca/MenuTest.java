@@ -35,10 +35,10 @@ public class MenuTest {
     public void showMainMenu() {
         menu.showMenu();
         List<String> stream = out.getOutput();
-        assertEquals("0. show book menu", stream.get(0));
-        assertEquals("1. show movie menu", stream.get(1));
-        assertEquals("2. show user details", stream.get(2));
-        assertEquals("3. exit app", stream.get(3));
+        assertEquals("0. " + globals.SHOW_BOOK_MENU, stream.get(0));
+        assertEquals("1. " + globals.SHOW_MOVIE_MENU, stream.get(1));
+        assertEquals("2. " + globals.SHOW_USER_DETAILS, stream.get(2));
+        assertEquals("3. " + globals.EXIT_APP, stream.get(3));
 
     }
 
@@ -118,8 +118,8 @@ public class MenuTest {
         List<String> stream = out.getOutput();
         assertEquals("ID:NAME:AUTHOR:YEAR", stream.get(0));
         assertEquals("1:name:author:2000", stream.get(1));
-        assertEquals("0 . return book", stream.get(2));
-        assertEquals("1 . checkout book", stream.get(3));
+        assertEquals("0 .return book", stream.get(2));
+        assertEquals("1 .checkout book", stream.get(3));
 
     }
 
@@ -130,8 +130,8 @@ public class MenuTest {
         List<String> stream = out.getOutput();
         assertEquals("ID:NAME:YEAR:DIRECTOR:RATING", stream.get(0));
         assertEquals("1:name:2000:director:3", stream.get(1));
-        assertEquals("0 . return movie", stream.get(2));
-        assertEquals("1 . checkout movie", stream.get(3));
+        assertEquals("0 .return movie", stream.get(2));
+        assertEquals("1 .checkout movie", stream.get(3));
 
     }
 
@@ -151,9 +151,64 @@ public class MenuTest {
 
 
         List<String> stream = out.getOutput();
-        assertEquals("please enter name of book", stream.get(0));
-        assertEquals("Thank you! Enjoy the book", stream.get(1));
+        assertEquals(globals.PLEASE_ENTER_NAME_OF_BOOK, stream.get(0));
+        assertEquals(globals.THANK_YOU_ENJOY_THE_BOOK, stream.get(1));
 
+
+    }
+    @Test
+    public void showBookAndThenUnSuccesfulCheckout() {
+
+        List<String> data = new ArrayList<>();
+        data.add("nam");
+        in.setInput(data);
+
+
+        menu.setCurrentOption("0");
+        menu.executeOption("1");
+
+
+
+        List<String> stream = out.getOutput();
+        assertEquals(globals.PLEASE_ENTER_NAME_OF_BOOK, stream.get(0));
+        assertEquals(globals.THAT_BOOK_IS_NOT_AVAILABLE, stream.get(1));
+
+
+    }
+    @Test
+    public void showMoviesAndThenCheckout() {
+
+        List<String> data = new ArrayList<>();
+        data.add("name");
+        in.setInput(data);
+
+
+        menu.setCurrentOption("1");
+        menu.executeOption("1");
+
+
+
+        List<String> stream = out.getOutput();
+        assertEquals(globals.PLEASE_ENTER_NAME_OF_MOVIE, stream.get(0));
+        assertEquals(globals.THANK_YOU_ENJOY_THE_MOVIE, stream.get(1));
+
+    }
+    @Test
+    public void showMoviesAndThenUnSeccesfulCheckout() {
+
+        List<String> data = new ArrayList<>();
+        data.add("nam");
+        in.setInput(data);
+
+
+        menu.setCurrentOption("1");
+        menu.executeOption("1");
+
+
+
+        List<String> stream = out.getOutput();
+        assertEquals(globals.PLEASE_ENTER_NAME_OF_MOVIE, stream.get(0));
+        assertEquals(globals.THAT_MOVIE_IS_NOT_AVAILABLE, stream.get(1));
 
     }
 }

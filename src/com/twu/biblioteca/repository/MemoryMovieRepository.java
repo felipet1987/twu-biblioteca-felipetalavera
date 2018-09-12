@@ -56,4 +56,9 @@ public class MemoryMovieRepository implements MovieRepository {
 
 
     }
+
+    @Override
+    public int finddIdByName(String name) {
+        return 0;
+    }
 }

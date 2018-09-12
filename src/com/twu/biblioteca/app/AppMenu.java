@@ -21,8 +21,9 @@ public interface AppMenu {
 
     void setCurrentOption(String i);
 
-    void executeCheckout(String name);
+    void executeBookCheckout(String name);
 
     String waitForBookName();
 
+    String waitForMovieName();
 }

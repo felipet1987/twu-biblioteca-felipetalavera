@@ -9,7 +9,6 @@ import java.util.List;
 public class ListMenu implements AppMenu {
 
 
-    private static final String WELCOME = "Welcome";
     private final InputPort input;
     private final OutputPort output;
     private final UserService userService;
@@ -33,24 +32,25 @@ public class ListMenu implements AppMenu {
 
     private List<String[]> setMenuOptions() {
         options = new ArrayList<>();
-        options.add(new String[]{"0", "show book menu"});
-        options.add(new String[]{"1", "show movie menu"});
-        options.add(new String[]{"2", "show user details"});
-        options.add(new String[]{"3", "exit app"});
+        options.add(new String[]{"0", globals.SHOW_BOOK_MENU});
+        options.add(new String[]{"1", globals.SHOW_MOVIE_MENU});
+        options.add(new String[]{"2", globals.SHOW_USER_DETAILS});
+        options.add(new String[]{"3", globals.EXIT_APP});
         return options;
+
     }
 
 
     @Override
     public void showWelcome() {
-        output.print(WELCOME);
+        output.print(globals.WELCOME);
     }
 
     @Override
     public boolean login() {
-        output.print("enter library number");
+        output.print(globals.ENTER_LIBRARY_NUMBER);
         String number = input.getInput();
-        output.print("enter password");
+        output.print(globals.ENTER_PASSWORD);
         String password = input.getInput();
         if (userService.login(number, password)) {
             this.logged = true;
@@ -65,7 +65,7 @@ public class ListMenu implements AppMenu {
 
     @Override
     public void showBookMenu() {
-        output.print("ID:NAME:AUTHOR:YEAR");
+        output.print(globals.ID_NAME_AUTHOR_YEAR);
         List<String[]> books = bookService.getBooks();
         for (String[] b : books) {
             String book = b[0] + ":" + b[1] + ":" + b[2] + ":" + b[3];
@@ -77,7 +77,7 @@ public class ListMenu implements AppMenu {
 
     @Override
     public String waitForUser() {
-        output.print("please enter an option");
+        output.print(globals.PLEASE_ENTER_AN_OPTION);
         String option = input.getInput();
         return option;
     }
@@ -86,9 +86,15 @@ public class ListMenu implements AppMenu {
     public void executeOption(String option) {
 
 
-        if(this.actualOption == "0"){
+        if (this.actualOption == "0") {
             if (Integer.parseInt(option) == 1) {
-                executeCheckout(waitForBookName());
+                executeBookCheckout(waitForBookName());
+            }
+            return;
+        }
+        if (this.actualOption == "1") {
+            if (Integer.parseInt(option) == 1) {
+                executeMovieCheckout(waitForMovieName());
             }
             return;
         }
@@ -104,10 +110,15 @@ public class ListMenu implements AppMenu {
         }
 
 
-        output.print("Invalid Option");
+        output.print(globals.INVALID_OPTION);
         showMenu();
 
 
+    }
+
+    private void executeMovieCheckout(String name) {
+        int id = movieService.findByName(name);
+        output.print(movieService.checkout(id));
     }
 
     @Override
@@ -120,7 +131,7 @@ public class ListMenu implements AppMenu {
 
     @Override
     public void showMovieMenu() {
-        output.print("ID:NAME:YEAR:DIRECTOR:RATING");
+        output.print(globals.MOVIE_HEADER);
 
         List<String[]> movies = movieService.getMovies();
         for (String[] movie : movies) {
@@ -142,7 +153,7 @@ public class ListMenu implements AppMenu {
     }
 
     @Override
-    public void executeCheckout(String name) {
+    public void executeBookCheckout(String name) {
 
         int id = bookService.findByName(name);
         output.print(bookService.checkout(id));
@@ -150,20 +161,26 @@ public class ListMenu implements AppMenu {
 
     @Override
     public String waitForBookName() {
-        output.print("please enter name of book");
+        output.print(globals.PLEASE_ENTER_NAME_OF_BOOK);
+        String option = input.getInput();
+        return option;
+    }
+    @Override
+    public String waitForMovieName() {
+        output.print(globals.PLEASE_ENTER_NAME_OF_MOVIE);
         String option = input.getInput();
         return option;
     }
 
 
     private void showMovieOptions() {
-        output.print("0 . return movie");
-        output.print("1 . checkout movie");
+        output.print("0 ." + globals.RETURN_MOVIE);
+        output.print("1 ." + globals.CHECKOUT_MOVIE);
     }
 
 
     private void showBookOptions() {
-        output.print("0 . return book");
-        output.print("1 . checkout book");
+        output.print("0 ." + globals.RETURN_BOOK);
+        output.print("1 ." + globals.CHECKOUT_BOOK);
     }
 }
