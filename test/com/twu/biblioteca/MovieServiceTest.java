@@ -1,10 +1,7 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.model.Book;
-import com.twu.biblioteca.model.Movie;
-import com.twu.biblioteca.repository.MemoryBookRepository;
-import com.twu.biblioteca.repository.MemoryMovieRepository;
 import com.twu.biblioteca.service.ListBookService;
+import com.twu.biblioteca.service.ListMovieService;
 import org.junit.Test;
 
 import java.util.List;
@@ -33,5 +30,23 @@ public class MovieServiceTest {
         assertEquals(1, movieListView.size());
 
     }
+    @Test
+    public void successfulReturn() {
+
+        MovieRepository repo = new FakeMovieRepository();
+        MovieService service = new ListMovieService(repo);
+        assertEquals("Thank you for returning the movie.",service.returnMovie(0));
+
+
+    }
+
+    @Test
+    public void UnSuccesfulReturn() {
+        MovieRepository repo = new FakeMovieRepository();
+        MovieService service = new ListMovieService(repo);
+        assertEquals("That is not a valid movie to return.",service.returnMovie(1));
+
+    }
+
 
 }

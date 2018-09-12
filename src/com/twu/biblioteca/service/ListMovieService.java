@@ -23,4 +23,14 @@ public class ListMovieService implements MovieService {
         }
         return list;
     }
+
+    @Override
+    public String returnMovie(int id) {
+        try {
+            repo.returnMovie(id);
+            return "That is not a valid movie to return.";
+        } catch (Exception e) {
+            return "Thank you for returning the movie.";
+        }
+    }
 }

@@ -4,4 +4,6 @@ import java.util.List;
 
 public interface MovieService {
     List<String[]> getMovies();
+
+    String returnMovie(int id);
 }
