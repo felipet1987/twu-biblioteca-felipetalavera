@@ -8,7 +8,9 @@ import com.twu.biblioteca.repository.MemoryMovieRepository;
 import com.twu.biblioteca.repository.MemoryUserRepository;
 import com.twu.biblioteca.service.ListBookService;
 import com.twu.biblioteca.service.ListMovieService;
+import com.twu.biblioteca.service.ListUserService;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 public class mainTest {
 
 
-    private  MainController mainController;
+    private MainController mainController;
     private InputPort in;
     private OutputPort out;
     private UserRepository userRepo;
@@ -32,17 +34,17 @@ public class mainTest {
 
 
     @Before
-    public void setUp()  {
-         in = new TestInput();
-         out = new TestOutput();
-         userRepo = new MemoryUserRepository();
-         userService = new ListUserService(userRepo);
-         bookRepo = new MemoryBookRepository();
-         bookService = new ListBookService(bookRepo);
-         movieRepo = new MemoryMovieRepository();
-         movieService = new ListMovieService(movieRepo);
-         menu = new ListMenu(in,out,userService,bookService,movieService);
-         mainController =  new MainController(menu);
+    public void setUp() {
+        in = new TestInput();
+        out = new TestOutput();
+        userRepo = new MemoryUserRepository();
+        userService = new ListUserService(userRepo);
+        bookRepo = new MemoryBookRepository();
+        bookService = new ListBookService(bookRepo);
+        movieRepo = new MemoryMovieRepository();
+        movieService = new ListMovieService(movieRepo);
+        menu = new ListMenu(in, out, userService, bookService, movieService);
+        mainController = new MainController(menu);
 
     }
 
@@ -63,7 +65,7 @@ public class mainTest {
         List<String> stream = out.getOutput();
 
 
-        assertEquals(true,menu.isLogged());
+        assertEquals(true, menu.isLogged());
         assertEquals("enter library number", stream.get(0));
         assertEquals("enter password", stream.get(1));
 
@@ -74,7 +76,6 @@ public class mainTest {
         assertEquals("3. exit app", stream.get(6));
 
     }
-    
 
     @Test
     public void ShouldAskLoginUntilCorrect() {
@@ -98,7 +99,56 @@ public class mainTest {
         assertEquals("Welcome", stream.get(4));
 
 
+    }
+
+    @Test
+    public void whenUseChooseZeroShowBooks() {
+        List<String> data = new ArrayList<>();
+        data.add("0");
+        in.setInput(data);
+
+        mainController.execute();
+
+
+        List<String> stream = out.getOutput();
+        assertEquals("please enter an option", stream.get(0));
+        assertEquals("ID:NAME:AUTHOR:YEAR", stream.get(1));
+
+    }
+    @Test
+    public void whenUseChooseOneShowMovies() {
+        List<String> data = new ArrayList<>();
+        data.add("1");
+        in.setInput(data);
+
+        mainController.execute();
+
+        List<String> stream = out.getOutput();
+        assertEquals("please enter an option", stream.get(0));
+        assertEquals("ID:NAME:YEAR:DIRECTOR:RATING", stream.get(1));
+
+    }
+
+    @Ignore
+    @Test
+    public void succesfulCheckout() {
+        List<String> data = new ArrayList<>();
+        data.add("1");
+        data.add("1");
+        in.setInput(data);
+
+        mainController.execute();
+        mainController.execute();
+
+        List<String> stream = out.getOutput();
+        //assertEquals("please enter an option", stream.get(0));
+        //        //assertEquals("ID:NAME:YEAR:DIRECTOR:RATING", stream.get(1));
+
+        //assertEquals("please enter an option", stream.get(2));
+        assertEquals("ID:NAME:YEAR:DIRECTOR:RATING", stream.get(3));
 
 
     }
+
+
 }

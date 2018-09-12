@@ -89,6 +89,11 @@ public class ListMenu implements AppMenu {
             return;
         }
 
+        if (Integer.parseInt(option) == 1) {
+            showMovieMenu();
+            return;
+        }
+
         output.print("Invalid Option");
         showMenu();
 
