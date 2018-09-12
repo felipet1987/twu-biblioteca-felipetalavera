@@ -2,6 +2,7 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.app.AppMenu;
 import com.twu.biblioteca.app.ListMenu;
+import com.twu.biblioteca.app.MainController;
 import com.twu.biblioteca.repository.MemoryBookRepository;
 import com.twu.biblioteca.repository.MemoryMovieRepository;
 import com.twu.biblioteca.repository.MemoryUserRepository;
@@ -18,6 +19,7 @@ import static org.junit.Assert.assertEquals;
 public class mainTest {
 
 
+    private  MainController mainController;
     private InputPort in;
     private OutputPort out;
     private UserRepository userRepo;
@@ -40,6 +42,7 @@ public class mainTest {
          movieRepo = new MemoryMovieRepository();
          movieService = new ListMovieService(movieRepo);
          menu = new ListMenu(in,out,userService,bookService,movieService);
+         mainController =  new MainController(menu);
 
     }
 
@@ -54,11 +57,7 @@ public class mainTest {
         in.setInput(data);
 
 
-        if(menu.login()){
-            menu.showWelcome();
-            menu.showMenu();
-        }
-
+        mainController.start();
 
 
         List<String> stream = out.getOutput();
@@ -73,6 +72,33 @@ public class mainTest {
         assertEquals("1. show movie menu", stream.get(4));
         assertEquals("2. show user details", stream.get(5));
         assertEquals("3. exit app", stream.get(6));
+
+    }
+    
+
+    @Test
+    public void ShouldAskLoginUntilCorrect() {
+        List<String> data = new ArrayList<>();
+        data.add("123-456");
+        data.add("password");
+        data.add("123-4567");
+        data.add("password");
+        in.setInput(data);
+
+
+        mainController.start();
+
+
+        List<String> stream = out.getOutput();
+
+        assertEquals("enter library number", stream.get(0));
+        assertEquals("enter password", stream.get(1));
+        assertEquals("enter library number", stream.get(2));
+        assertEquals("enter password", stream.get(3));
+        assertEquals("Welcome", stream.get(4));
+
+
+
 
     }
 }
