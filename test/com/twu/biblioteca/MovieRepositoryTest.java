@@ -66,4 +66,11 @@ public class MovieRepositoryTest {
         repo.checkout(2);
 
     }
+
+    @Test
+    public void findByIncorrectNameShoudlReturnMinusOne()  {
+        MovieRepository repo = new MemoryMovieRepository();
+        assertEquals(-1,repo.findIdByName("noname"));
+
+    }
 }

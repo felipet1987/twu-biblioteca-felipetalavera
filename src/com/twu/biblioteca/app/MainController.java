@@ -18,7 +18,7 @@ public class MainController {
         }
     }
 
-    public void execute() {
+    public void nextOption() {
         String option = menu.waitForUser();
         menu.executeOption(option);
 

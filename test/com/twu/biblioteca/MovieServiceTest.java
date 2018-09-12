@@ -55,7 +55,7 @@ public class MovieServiceTest {
 
         MovieRepository repo = new FakeMovieRepository();
         MovieService service = new ListMovieService(repo);
-        assertEquals("Thank you for returning the movie.",service.returnMovie(0));
+        assertEquals("Thank you for returning the movie.",service.returnMovie(1));
 
 
     }
@@ -64,7 +64,7 @@ public class MovieServiceTest {
     public void UnSuccesfulReturn() {
         MovieRepository repo = new FakeMovieRepository();
         MovieService service = new ListMovieService(repo);
-        assertEquals("That is not a valid movie to return.",service.returnMovie(1));
+        assertEquals("That is not a valid movie to return.",service.returnMovie(0));
 
     }
 

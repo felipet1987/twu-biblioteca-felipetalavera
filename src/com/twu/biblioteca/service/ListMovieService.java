@@ -30,9 +30,9 @@ public class ListMovieService implements MovieService {
     public String returnMovie(int id) {
         try {
             repo.returnMovie(id);
-            return globals.THAT_IS_NOT_A_VALID_MOVIE_TO_RETURN;
-        } catch (Exception e) {
             return globals.THANK_YOU_FOR_RETURNING_THE_MOVIE;
+        } catch (Exception e) {
+            return globals.THAT_IS_NOT_A_VALID_MOVIE_TO_RETURN;
         }
     }
 
@@ -49,6 +49,6 @@ public class ListMovieService implements MovieService {
 
     @Override
     public int findByName(String name) {
-        return repo.finddIdByName(name);
+        return repo.findIdByName(name);
     }
 }

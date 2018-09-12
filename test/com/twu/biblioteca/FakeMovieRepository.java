@@ -33,7 +33,7 @@ public class FakeMovieRepository implements MovieRepository {
     }
 
     @Override
-    public int finddIdByName(String name) {
+    public int findIdByName(String name) {
         return 0;
     }
 }

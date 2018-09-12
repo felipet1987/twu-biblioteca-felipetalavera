@@ -1,6 +1,7 @@
 package com.twu.biblioteca.app;
 
 import com.twu.biblioteca.*;
+import com.twu.biblioteca.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,6 +97,9 @@ public class ListMenu implements AppMenu {
             if (Integer.parseInt(option) == 1) {
                 executeMovieCheckout(waitForMovieName());
             }
+            if (Integer.parseInt(option) == 0) {
+                executeMovieReturn(waitForMovieName());
+            }
             return;
         }
 
@@ -109,11 +113,21 @@ public class ListMenu implements AppMenu {
             return;
         }
 
+        if (Integer.parseInt(option) == 2) {
+            showUserDetails();
+            return;
+        }
+
 
         output.print(globals.INVALID_OPTION);
-        showMenu();
 
 
+
+    }
+
+    private void executeMovieReturn(String name) {
+        int id = movieService.findByName(name);
+        output.print(movieService.returnMovie(id));
     }
 
     private void executeMovieCheckout(String name) {
@@ -138,6 +152,7 @@ public class ListMenu implements AppMenu {
             output.print(movie[0] + ":" + movie[1] + ":" + movie[2] + ":" + movie[3] + ":" + movie[4]);
         }
         showMovieOptions();
+        setCurrentOption("1");
 
 
     }
@@ -170,6 +185,14 @@ public class ListMenu implements AppMenu {
         output.print(globals.PLEASE_ENTER_NAME_OF_MOVIE);
         String option = input.getInput();
         return option;
+    }
+
+    @Override
+    public void showUserDetails() {
+        User u = userService.getLoggedUser();
+        output.print(u.getName());
+        output.print(u.getEmail());
+        output.print(u.getPhone());
     }
 
 

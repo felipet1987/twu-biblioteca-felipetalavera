@@ -44,7 +44,6 @@ public class mainTest {
         movieService = new ListMovieService(movieRepo);
         menu = new ListMenu(in, out, userService, bookService, movieService);
         mainController = new MainController(menu);
-
     }
 
     @Test
@@ -106,7 +105,7 @@ public class mainTest {
         data.add("0");
         in.setInput(data);
 
-        mainController.execute();
+        mainController.nextOption();
 
 
         List<String> stream = out.getOutput();
@@ -120,7 +119,7 @@ public class mainTest {
         data.add("1");
         in.setInput(data);
 
-        mainController.execute();
+        mainController.nextOption();
 
         List<String> stream = out.getOutput();
         assertEquals("please enter an option", stream.get(0));
@@ -128,6 +127,25 @@ public class mainTest {
 
     }
 
+    @Test
+    public void showUserDetails() {
+        List<String> data = new ArrayList<>();
+        data.add("123-4567");
+        data.add("password");
+        data.add("2");
+        in.setInput(data);
+
+
+        mainController.start();
+        mainController.nextOption();
+
+        List<String> stream = out.getOutput();
+        assertEquals("Felipe", stream.get(8));
+        assertEquals("correo@mail.cl", stream.get(9));
+        assertEquals("+56-991234567", stream.get(10));
+
+
+    }
 
     @Test
     public void succesfulBookCheckout() {
@@ -137,16 +155,97 @@ public class mainTest {
         data.add("Book 1");
         in.setInput(data);
 
-        mainController.execute();
-        mainController.execute();
+
+
+        mainController.nextOption();
+        mainController.nextOption();
 
 
         List<String> stream = out.getOutput();
 
-        assertEquals("please enter name of book", stream.get(6));
+        assertEquals(globals.PLEASE_ENTER_NAME_OF_BOOK, stream.get(6));
         assertEquals(globals.THANK_YOU_ENJOY_THE_BOOK, stream.get(7));
 
     }
+    @Test
+    public void unSuccesfulBookCheckout() {
+        List<String> data = new ArrayList<>();
+        data.add("0");
+        data.add("1");
+        data.add("Book 2");
+        in.setInput(data);
+
+        mainController.nextOption();
+        mainController.nextOption();
+
+
+        List<String> stream = out.getOutput();
+
+        assertEquals(globals.PLEASE_ENTER_NAME_OF_BOOK, stream.get(6));
+        assertEquals(globals.THAT_BOOK_IS_NOT_AVAILABLE, stream.get(7));
+
+    }
+
+    @Test
+    public void succesfulMovieCheckout() {
+        List<String> data = new ArrayList<>();
+        data.add("1");
+        data.add("1");
+        data.add("movie 1");
+        in.setInput(data);
+
+        mainController.nextOption();
+        mainController.nextOption();
+
+
+        List<String> stream = out.getOutput();
+
+        assertEquals(globals.PLEASE_ENTER_NAME_OF_MOVIE, stream.get(7));
+        assertEquals(globals.THANK_YOU_ENJOY_THE_MOVIE, stream.get(8));
+
+    }
+    @Test
+    public void succesfulMovieReturn() {
+        List<String> data = new ArrayList<>();
+        data.add("1");
+        data.add("0");
+        data.add("movie 2");
+        in.setInput(data);
+
+        mainController.nextOption();
+        mainController.nextOption();
+
+
+        List<String> stream = out.getOutput();
+
+        assertEquals(globals.PLEASE_ENTER_NAME_OF_MOVIE, stream.get(7));
+        assertEquals(globals.THANK_YOU_FOR_RETURNING_THE_MOVIE, stream.get(8));
+
+    }
+    @Test
+    public void unSuccesfulMovieReturn() {
+        List<String> data = new ArrayList<>();
+        data.add("1");
+        data.add("0");
+        data.add("movie");
+        in.setInput(data);
+
+
+
+
+        mainController.nextOption();
+        mainController.nextOption();
+
+
+        List<String> stream = out.getOutput();
+
+        assertEquals(globals.PLEASE_ENTER_NAME_OF_MOVIE, stream.get(7));
+        assertEquals(globals.THAT_IS_NOT_A_VALID_MOVIE_TO_RETURN, stream.get(8));
+
+    }
+
+
+
 
 
 

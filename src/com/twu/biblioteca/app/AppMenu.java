@@ -26,4 +26,6 @@ public interface AppMenu {
     String waitForBookName();
 
     String waitForMovieName();
+
+    void showUserDetails();
 }

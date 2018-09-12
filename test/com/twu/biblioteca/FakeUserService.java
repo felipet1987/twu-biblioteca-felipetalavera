@@ -8,7 +8,7 @@ public class FakeUserService implements UserService {
     @Override
     public boolean login(String number, String password) {
 
-        this.loggedUser = new User(number,"","","","");
+        this.loggedUser = new User(number,"","name","email","phone");
         if(number == "123-456"){
             return false;
         }

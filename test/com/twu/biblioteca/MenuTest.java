@@ -112,9 +112,25 @@ public class MenuTest {
     }
 
     @Test
+    public void showUserDetail() {
+
+        List<String> data = new ArrayList<>();
+        data.add("123-456");
+        data.add("password");
+        in.setInput(data);
+
+        menu.login();
+        menu.showUserDetails();
+        List<String> stream = out.getOutput();
+        assertEquals("name", stream.get(2));
+        assertEquals("email", stream.get(3));
+        assertEquals("phone", stream.get(4));
+
+    }
+
+    @Test
     public void showBookMenu() {
         menu.showBookMenu();
-
         List<String> stream = out.getOutput();
         assertEquals("ID:NAME:AUTHOR:YEAR", stream.get(0));
         assertEquals("1:name:author:2000", stream.get(1));

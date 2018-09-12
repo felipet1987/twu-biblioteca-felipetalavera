@@ -13,8 +13,8 @@ public class MemoryMovieRepository implements MovieRepository {
 
     public MemoryMovieRepository() {
         movies = new ArrayList<>();
-        movies.add(new Movie(1, "movie 1",2018,"Director 1",2,false));
-        movies.add(new Movie(2, "movie 2",2018,"Director 2",2,true));
+        movies.add(new Movie(1, "movie 1", 2018, "Director 1", 2, false));
+        movies.add(new Movie(2, "movie 2", 2018, "Director 2", 2, true));
 
     }
 
@@ -26,10 +26,10 @@ public class MemoryMovieRepository implements MovieRepository {
     @Override
     public void checkout(int id) throws Exception {
         Movie m = findBy(id);
-        if(!m.isCheckedOut()){
+        if (!m.isCheckedOut()&&m.getId() != -1) {
             m.checkout();
-        }else{
-            throw  new Exception();
+        } else {
+            throw new Exception();
         }
 
     }
@@ -37,20 +37,20 @@ public class MemoryMovieRepository implements MovieRepository {
     @Override
     public Movie findBy(int i) {
 
-        for (Movie movie:movies) {
-            if(movie.getId() == i){
+        for (Movie movie : movies) {
+            if (movie.getId() == i) {
                 return movie;
             }
         }
-        return new Movie(-1,"",-1,"",-2,false);
+        return new Movie(-1, "", -1, "", -2, false);
     }
 
     @Override
     public void returnMovie(int i) throws Exception {
         Movie m = findBy(i);
-        if(m.isCheckedOut()){
+        if (m.isCheckedOut()&&m.getId() != -1) {
             m.returnThis();
-        }else{
+        } else {
             throw new Exception();
         }
 
@@ -58,7 +58,12 @@ public class MemoryMovieRepository implements MovieRepository {
     }
 
     @Override
-    public int finddIdByName(String name) {
-        return 0;
+    public int findIdByName(String name) {
+        for (Movie b : movies) {
+            if(b.getName() == name){
+                return b.getId();
+            }
+        }
+        return -1;
     }
 }

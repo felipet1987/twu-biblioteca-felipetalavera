@@ -13,5 +13,5 @@ public interface MovieRepository {
 
     void returnMovie(int i) throws Exception;
 
-    int finddIdByName(String name);
+    int findIdByName(String name);
 }
