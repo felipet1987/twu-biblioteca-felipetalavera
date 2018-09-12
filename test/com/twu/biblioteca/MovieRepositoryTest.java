@@ -36,7 +36,7 @@ public class MovieRepositoryTest {
     }
 
     @Test
-    public void shouldCheckOutMovie() {
+    public void shouldCheckOutMovie() throws Exception {
         MovieRepository repo = new MemoryMovieRepository();
 
         repo.checkout(1);
@@ -45,10 +45,25 @@ public class MovieRepositoryTest {
     }
 
     @Test
-    public void shouldReturnMovie() {
+    public void shouldReturnMovie() throws Exception {
         MovieRepository repo = new MemoryMovieRepository();
         repo.returnMovie(2);
         assertEquals(repo.findBy(2).isCheckedOut(), false);
+
+    }
+
+    @Test(expected = Exception.class)
+    public void failReturn() throws Exception {
+        MovieRepository repo = new MemoryMovieRepository();
+        repo.returnMovie(1);
+
+    }
+
+    @Test(expected = Exception.class)
+    public void failCheckout() throws Exception {
+        MovieRepository repo = new MemoryMovieRepository();
+
+        repo.checkout(2);
 
     }
 }

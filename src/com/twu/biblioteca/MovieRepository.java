@@ -7,9 +7,9 @@ import java.util.List;
 public interface MovieRepository {
     List<Movie> getMovies();
 
-    void checkout(int i);
+    void checkout(int i) throws Exception;
 
     Movie findBy(int i);
 
-    void returnMovie(int i);
+    void returnMovie(int i) throws Exception;
 }
