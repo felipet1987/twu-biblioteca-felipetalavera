@@ -38,13 +38,15 @@ public class ListMenu implements AppMenu {
     }
 
     @Override
-    public void login() {
+    public boolean login() {
         output.print("enter library number");
         String number = input.getInput();
         output.print("enter password");
         String password = input.getInput();
         if (userService.login(number, password)) {
-            showWelcome();
+            return true;
+        }else{
+            return false;
         }
 
     }

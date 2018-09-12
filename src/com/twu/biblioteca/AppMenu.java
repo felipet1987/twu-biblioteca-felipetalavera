@@ -5,7 +5,7 @@ public interface AppMenu {
     void showWelcome();
 
 
-    void login();
+    boolean login();
 
     void showBookMenu();
 

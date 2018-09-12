@@ -9,6 +9,9 @@ public class FakeUserService implements UserService {
     public boolean login(String number, String password) {
 
         this.loggedUser = new User(number,"","","","");
+        if(number == "123-456"){
+            return false;
+        }
         return true;
     }
 

@@ -25,8 +25,6 @@ public class MenuTest {
         bookService = new FakeBookService();
         menu = new ListMenu(in, out,userService,bookService);
 
-
-
     }
 
     @Test
@@ -36,12 +34,27 @@ public class MenuTest {
         data.add("password");
         in.setInput(data);
 
-        menu.login();
+        boolean logged = menu.login();
         List<String> stream = out.getOutput();
         assertEquals("enter library number", stream.get(0));
         assertEquals("enter password", stream.get(1));
-        assertEquals("Welcome", stream.get(2));
+        assertEquals(true,logged);
         
+    }
+
+    @Test
+    public void unSuccesfulLogin() {
+        List<String> data = new ArrayList<>();
+        data.add("123-456");
+        data.add("password");
+        in.setInput(data);
+
+        boolean logged = menu.login();
+        List<String> stream = out.getOutput();
+        assertEquals("enter library number", stream.get(0));
+        assertEquals("enter password", stream.get(1));
+        assertEquals(false, logged);
+
     }
 
     @Test
@@ -75,6 +88,7 @@ public class MenuTest {
 
 
     }
+
 
     @Test
     public void ShowBookMenu() {
