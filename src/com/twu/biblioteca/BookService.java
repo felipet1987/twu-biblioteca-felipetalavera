@@ -8,4 +8,6 @@ public interface BookService {
     String checkout(int id);
 
     String returnBook(int id);
+
+    int findByName(String name);
 }

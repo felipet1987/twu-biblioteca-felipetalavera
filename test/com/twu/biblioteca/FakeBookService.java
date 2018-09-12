@@ -13,11 +13,16 @@ public class FakeBookService implements BookService {
 
     @Override
     public String checkout(int id) {
-        return null;
+        return "Thank you! Enjoy the book";
     }
 
     @Override
     public String returnBook(int id) {
         return null;
+    }
+
+    @Override
+    public int findByName(String name) {
+        return 0;
     }
 }

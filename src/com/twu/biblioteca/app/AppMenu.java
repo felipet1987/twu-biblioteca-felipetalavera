@@ -18,4 +18,11 @@ public interface AppMenu {
     void showMovieMenu();
 
     boolean isLogged();
+
+    void setCurrentOption(String i);
+
+    void executeCheckout(String name);
+
+    String waitForBookName();
+
 }

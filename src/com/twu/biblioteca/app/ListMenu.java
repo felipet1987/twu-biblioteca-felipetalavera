@@ -17,6 +17,7 @@ public class ListMenu implements AppMenu {
     private final MovieService movieService;
     private List<String[]> options;
     private boolean logged;
+    private String actualOption;
 
 
     public ListMenu(InputPort in, OutputPort out, UserService userService, BookService bookService, MovieService movieService) {
@@ -84,6 +85,13 @@ public class ListMenu implements AppMenu {
     @Override
     public void executeOption(String option) {
 
+        if(this.actualOption == "1"){
+            if (Integer.parseInt(option) == 1) {
+                executeCheckout(waitForBookName());
+            }
+            return;
+        }
+
         if (Integer.parseInt(option) == 0) {
             showBookMenu();
             return;
@@ -93,6 +101,7 @@ public class ListMenu implements AppMenu {
             showMovieMenu();
             return;
         }
+
 
         output.print("Invalid Option");
         showMenu();
@@ -124,6 +133,25 @@ public class ListMenu implements AppMenu {
     @Override
     public boolean isLogged() {
         return this.logged;
+    }
+
+    @Override
+    public void setCurrentOption(String o) {
+        this.actualOption = o;
+    }
+
+    @Override
+    public void executeCheckout(String name) {
+
+        int id = bookService.findByName(name);
+        output.print(bookService.checkout(id));
+    }
+
+    @Override
+    public String waitForBookName() {
+        output.print("please enter name of book");
+        String option = input.getInput();
+        return option;
     }
 
 

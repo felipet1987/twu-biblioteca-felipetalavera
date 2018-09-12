@@ -134,5 +134,26 @@ public class MenuTest {
         assertEquals("1 . checkout movie", stream.get(3));
 
     }
+    
 
+
+    @Test
+    public void showBookAndThenCheckout() {
+
+        List<String> data = new ArrayList<>();
+        data.add("name");
+        in.setInput(data);
+
+
+        menu.setCurrentOption("1");
+        menu.executeOption("1");
+
+
+
+        List<String> stream = out.getOutput();
+        assertEquals("please enter name of book", stream.get(0));
+        assertEquals("Thank you! Enjoy the book", stream.get(1));
+
+
+    }
 }

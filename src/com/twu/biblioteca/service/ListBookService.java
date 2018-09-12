@@ -52,4 +52,9 @@ public class ListBookService implements BookService {
             return THAT_IS_NOT_A_VALID_BOOK_TO_RETURN;
         }
     }
+
+    @Override
+    public int findByName(String name) {
+        return 0;
+    }
 }
