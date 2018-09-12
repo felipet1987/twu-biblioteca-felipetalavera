@@ -16,6 +16,7 @@ public class ListMenu implements AppMenu {
     private final BookService bookService;
     private final MovieService movieService;
     private List<String[]> options;
+    private boolean logged;
 
 
     public ListMenu(InputPort in, OutputPort out, UserService userService, BookService bookService, MovieService movieService) {
@@ -25,6 +26,7 @@ public class ListMenu implements AppMenu {
         this.userService = userService;
         this.bookService = bookService;
         this.movieService = movieService;
+        this.logged = false;
     }
 
 
@@ -50,12 +52,15 @@ public class ListMenu implements AppMenu {
         output.print("enter password");
         String password = input.getInput();
         if (userService.login(number, password)) {
+            this.logged = true;
             return true;
         } else {
+            this.logged = false;
             return false;
         }
 
     }
+
 
     @Override
     public void showBookMenu() {
@@ -78,6 +83,7 @@ public class ListMenu implements AppMenu {
 
     @Override
     public void executeOption(String option) {
+
         if (Integer.parseInt(option) == 0) {
             showBookMenu();
             return;
@@ -85,6 +91,7 @@ public class ListMenu implements AppMenu {
 
         output.print("Invalid Option");
         showMenu();
+
 
     }
 
@@ -108,6 +115,12 @@ public class ListMenu implements AppMenu {
 
 
     }
+
+    @Override
+    public boolean isLogged() {
+        return this.logged;
+    }
+
 
     private void showMovieOptions() {
         output.print("0 . return movie");

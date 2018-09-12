@@ -16,4 +16,6 @@ public interface AppMenu {
     void showMenu();
 
     void showMovieMenu();
+
+    boolean isLogged();
 }
