@@ -12,4 +12,8 @@ public interface AppMenu {
     String waitForUser();
 
     void executeOption(String option);
+
+    void showMenu();
+
+    void showMovieMenu();
 }

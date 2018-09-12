@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.model.User;
+import com.twu.biblioteca.app.ListMenu;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,13 +17,26 @@ public class MenuTest {
     UserService userService;
     BookService bookService;
 
+
     @Before
     public void setUp() {
         out = new TestOutput();
         in = new TestInput();
         userService = new FakeUserService();
         bookService = new FakeBookService();
+
         menu = new ListMenu(in, out,userService,bookService);
+
+    }
+
+    @Test
+    public void showMainMenu() {
+        menu.showMenu();
+        List<String> stream = out.getOutput();
+        assertEquals("0. show book menu", stream.get(0));
+        assertEquals("1. show movie menu", stream.get(1));
+        assertEquals("2. show user details", stream.get(2));
+        assertEquals("3. exit app", stream.get(3));
 
     }
 
@@ -91,7 +104,7 @@ public class MenuTest {
 
 
     @Test
-    public void ShowBookMenu() {
+    public void showBookMenu() {
         menu.showBookMenu();
 
         List<String> stream = out.getOutput();
@@ -102,8 +115,15 @@ public class MenuTest {
 
     }
 
-
-
-
-
+//    @Test
+//    public void showMovieMenu() {
+//        menu.showMovieMenu();
+//
+//        List<String> stream = out.getOutput();
+//        assertEquals("ID:NAME:YEAR:DIRECTOR:RATING", stream.get(0));
+//        assertEquals("1:name:author:2000", stream.get(1));
+//        assertEquals("0 . return movie", stream.get(2));
+//        assertEquals("1 . checkout movie", stream.get(3));
+//
+//    }
 }
