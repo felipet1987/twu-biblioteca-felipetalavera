@@ -11,4 +11,5 @@ public interface AppMenu {
 
     String waitForUser();
 
+    void executeOption(String option);
 }

@@ -45,15 +45,10 @@ public class MenuTest {
     }
 
     @Test
-    public void ShowBookMenu() {
-        menu.showBookMenu();
-
+    public void WelcomeMessage() {
+        menu.showWelcome();
         List<String> stream = out.getOutput();
-        assertEquals("ID:NAME:AUTHOR:YEAR", stream.get(0));
-        assertEquals("1:name:author:2000", stream.get(1));
-        assertEquals("0 . return book", stream.get(2));
-        assertEquals("1 . checkout book", stream.get(3));
-
+        assertEquals("Welcome", stream.get(0));
     }
 
     @Test
@@ -66,16 +61,34 @@ public class MenuTest {
         List<String> stream = out.getOutput();
         assertEquals("please enter an option", stream.get(0));
         assertEquals("1",option);
-        
+
 
     }
 
     @Test
-    public void WelcomeMessage() {
-        menu.showWelcome();
+    public void executeOption() {
+
+
+        menu.executeOption("0");
         List<String> stream = out.getOutput();
-        assertEquals("Welcome", stream.get(0));
+        assertEquals("ID:NAME:AUTHOR:YEAR", stream.get(0));
+
+
     }
+
+    @Test
+    public void ShowBookMenu() {
+        menu.showBookMenu();
+
+        List<String> stream = out.getOutput();
+        assertEquals("ID:NAME:AUTHOR:YEAR", stream.get(0));
+        assertEquals("1:name:author:2000", stream.get(1));
+        assertEquals("0 . return book", stream.get(2));
+        assertEquals("1 . checkout book", stream.get(3));
+
+    }
+
+
 
 
 

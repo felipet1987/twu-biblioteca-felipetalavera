@@ -68,6 +68,15 @@ public class ListMenu implements AppMenu {
         return option;
     }
 
+    @Override
+    public void executeOption(String option) {
+        if(option == "0"){
+            showBookMenu();
+            return;
+        }
+
+    }
+
     private void showBookOptions() {
         output.print("0 . return book");
         output.print("1 . checkout book");
