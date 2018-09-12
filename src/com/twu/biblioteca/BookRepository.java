@@ -15,4 +15,5 @@ public interface BookRepository {
 
     Book findBy(int id);
 
+    int findIdByName(String name);
 }

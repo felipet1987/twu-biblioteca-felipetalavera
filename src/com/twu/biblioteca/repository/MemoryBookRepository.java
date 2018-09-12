@@ -63,4 +63,14 @@ public class MemoryBookRepository implements BookRepository {
         }
         return new Book(-1,"","",-1,true);
     }
+
+    @Override
+    public int findIdByName(String name) {
+        for (Book b:books) {
+            if(b.getName() == name){
+                return b.getId();
+            }
+        }
+        return -1;
+    }
 }

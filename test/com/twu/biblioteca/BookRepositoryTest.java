@@ -58,5 +58,9 @@ public class BookRepositoryTest {
 
     }
 
-
+    @Test
+    public void findByName() {
+        BookRepository repo = new MemoryBookRepository();
+        assertEquals(2,repo.findIdByName("Book 2"));
+    }
 }

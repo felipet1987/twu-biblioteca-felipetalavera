@@ -55,6 +55,6 @@ public class ListBookService implements BookService {
 
     @Override
     public int findByName(String name) {
-        return 0;
+        return repo.findIdByName(name);
     }
 }

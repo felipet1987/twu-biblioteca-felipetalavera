@@ -40,4 +40,9 @@ public class FakeBookRepository implements BookRepository {
     public Book findBy(int id) {
         return null;
     }
+
+    @Override
+    public int findIdByName(String name) {
+        return 0;
+    }
 }
