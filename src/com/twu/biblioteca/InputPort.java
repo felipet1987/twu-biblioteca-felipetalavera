@@ -1,7 +1,14 @@
 package com.twu.biblioteca;
 
+import java.util.List;
+
 public interface InputPort {
 
-    int getInt();
+
+
+    void setInput(List<String> data);
+
+    String getInput();
+
 }
 

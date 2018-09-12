@@ -5,6 +5,10 @@ public interface AppMenu {
     void showWelcome();
 
 
+    void login();
 
+    void showBookMenu();
+
+    String waitForUser();
 
 }

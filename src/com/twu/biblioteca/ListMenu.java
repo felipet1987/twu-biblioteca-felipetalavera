@@ -10,16 +10,18 @@ public class ListMenu implements AppMenu {
     private static final String WELCOME = "Welcome";
     private final InputPort input;
     private final OutputPort output;
+    private final UserService userService;
+    private final BookService bookService;
     private List<String> options;
 
 
-    public ListMenu(InputPort in, OutputPort out) {
+    public ListMenu(InputPort in, OutputPort out, UserService userService, BookService bookService) {
         this.input = in;
         this.output = out;
         options = setMenuOptions();
+        this.userService = userService;
+        this.bookService = bookService;
     }
-
-
 
 
     private List<String> setMenuOptions() {
@@ -33,5 +35,41 @@ public class ListMenu implements AppMenu {
     @Override
     public void showWelcome() {
         output.print(WELCOME);
+    }
+
+    @Override
+    public void login() {
+        output.print("enter library number");
+        String number = input.getInput();
+        output.print("enter password");
+        String password = input.getInput();
+        if (userService.login(number, password)) {
+            showWelcome();
+        }
+
+    }
+
+    @Override
+    public void showBookMenu() {
+        output.print("ID:NAME:AUTHOR:YEAR");
+        List<String[]> books = bookService.getBooks();
+        for (String[] b : books) {
+            String book = b[0]+":"+b[1]+":"+b[2]+":"+b[3];
+            output.print(book);
+        }
+        showBookOptions();
+
+    }
+
+    @Override
+    public String waitForUser() {
+        output.print("please enter an option");
+        String option = input.getInput();
+        return option;
+    }
+
+    private void showBookOptions() {
+        output.print("0 . return book");
+        output.print("1 . checkout book");
     }
 }

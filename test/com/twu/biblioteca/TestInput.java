@@ -1,19 +1,30 @@
 package com.twu.biblioteca;
 
-class TestInput implements InputPort {
-    private int data;
+import java.util.List;
 
+class TestInput implements InputPort {
+
+
+    private int index;
+    private List<String> data;
 
     TestInput() {
 
+        this.index = 0;
+
     }
 
-    void setInput(int data) {
+
+    @Override
+    public void setInput(List<String> data) {
         this.data = data;
     }
 
     @Override
-    public int getInt() {
-        return data;
+    public String getInput() {
+
+        String result = data.get(index);
+        index++;
+        return result;
     }
 }
