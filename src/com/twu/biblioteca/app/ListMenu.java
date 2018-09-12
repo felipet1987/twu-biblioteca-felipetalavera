@@ -1,4 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.app;
+
+import com.twu.biblioteca.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,7 @@ public class ListMenu implements AppMenu {
     private final OutputPort output;
     private final UserService userService;
     private final BookService bookService;
-    private List<String> options;
+    private List<String[]> options;
 
 
     public ListMenu(InputPort in, OutputPort out, UserService userService, BookService bookService) {
@@ -24,10 +26,12 @@ public class ListMenu implements AppMenu {
     }
 
 
-    private List<String> setMenuOptions() {
+    private List<String[]> setMenuOptions() {
         options = new ArrayList<>();
-        options.add("List Books");
-        options.add("List Movies");
+        options.add(new String[]{"0","show book menu"});
+        options.add(new String[]{"1","show movie menu"});
+        options.add(new String[]{"2","show user details"});
+        options.add(new String[]{"3","exit app"});
         return options;
     }
 
@@ -76,6 +80,19 @@ public class ListMenu implements AppMenu {
             showBookMenu();
             return;
         }
+
+    }
+
+    @Override
+    public void showMenu() {
+        for (String[] o:options) {
+            output.print(o[0]+". "+o[1]);
+        }
+
+    }
+
+    @Override
+    public void showMovieMenu() {
 
     }
 
