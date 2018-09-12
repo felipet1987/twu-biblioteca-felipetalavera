@@ -15,6 +15,7 @@ public class ConsoleInput implements InputPort {
 
     @Override
     public String getInput() {
-        return null;
+        Scanner sc = new Scanner(System.in);
+        return sc.next();
     }
 }
