@@ -1,5 +1,7 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.service;
 
+import com.twu.biblioteca.UserRepository;
+import com.twu.biblioteca.UserService;
 import com.twu.biblioteca.model.User;
 
 public class ListUserService implements UserService {
