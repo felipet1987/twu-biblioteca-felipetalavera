@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.twu.biblioteca.app.AppMenu;
 import com.twu.biblioteca.app.ListMenu;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +17,7 @@ public class MenuTest {
     AppMenu menu;
     UserService userService;
     BookService bookService;
+    MovieService movieService;
 
 
     @Before
@@ -24,8 +26,8 @@ public class MenuTest {
         in = new TestInput();
         userService = new FakeUserService();
         bookService = new FakeBookService();
-
-        menu = new ListMenu(in, out,userService,bookService);
+        movieService = new FakeMovieService();
+        menu = new ListMenu(in, out, userService, bookService, movieService);
 
     }
 
@@ -51,8 +53,8 @@ public class MenuTest {
         List<String> stream = out.getOutput();
         assertEquals("enter library number", stream.get(0));
         assertEquals("enter password", stream.get(1));
-        assertEquals(true,logged);
-        
+        assertEquals(true, logged);
+
     }
 
     @Test
@@ -86,7 +88,7 @@ public class MenuTest {
         String option = menu.waitForUser();
         List<String> stream = out.getOutput();
         assertEquals("please enter an option", stream.get(0));
-        assertEquals("1",option);
+        assertEquals("1", option);
 
 
     }
@@ -102,6 +104,12 @@ public class MenuTest {
 
     }
 
+    @Test
+    public void invalidOption() {
+        menu.executeOption("-1");
+        List<String> stream = out.getOutput();
+        assertEquals("Invalid Option", stream.get(0));
+    }
 
     @Test
     public void showBookMenu() {
@@ -115,15 +123,16 @@ public class MenuTest {
 
     }
 
-//    @Test
-//    public void showMovieMenu() {
-//        menu.showMovieMenu();
-//
-//        List<String> stream = out.getOutput();
-//        assertEquals("ID:NAME:YEAR:DIRECTOR:RATING", stream.get(0));
-//        assertEquals("1:name:author:2000", stream.get(1));
-//        assertEquals("0 . return movie", stream.get(2));
-//        assertEquals("1 . checkout movie", stream.get(3));
-//
-//    }
+    @Test
+    public void showMovieMenu() {
+        menu.showMovieMenu();
+
+        List<String> stream = out.getOutput();
+        assertEquals("ID:NAME:YEAR:DIRECTOR:RATING", stream.get(0));
+        assertEquals("1:name:2000:director:3", stream.get(1));
+        assertEquals("0 . return movie", stream.get(2));
+        assertEquals("1 . checkout movie", stream.get(3));
+
+    }
+
 }
