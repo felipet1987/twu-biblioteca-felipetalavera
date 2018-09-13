@@ -21,7 +21,9 @@ public class MainController {
 
     public void nextOption() {
         String option = menu.waitForUser();
+        menu.newPage();
         menu.executeOption(option);
+
 
     }
 
