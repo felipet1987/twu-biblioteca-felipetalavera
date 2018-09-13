@@ -1,5 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.mocks;
 
+import com.twu.biblioteca.MovieRepository;
 import com.twu.biblioteca.model.Movie;
 
 import java.util.ArrayList;

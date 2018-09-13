@@ -1,14 +1,16 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.mocks;
+
+import com.twu.biblioteca.InputPort;
 
 import java.util.List;
 
-class TestInput implements InputPort {
+public class TestInput implements InputPort {
 
 
     private int index;
     private List<String> data;
 
-    TestInput() {
+    public TestInput() {
 
         this.index = 0;
 

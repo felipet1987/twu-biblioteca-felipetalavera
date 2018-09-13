@@ -1,14 +1,16 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.mocks;
+
+import com.twu.biblioteca.OutputPort;
 
 import java.util.ArrayList;
 import java.util.List;
 
-class TestOutput implements OutputPort {
+public class TestOutput implements OutputPort {
 
     private List<String> data;
 
 
-    TestOutput() {
+    public TestOutput() {
         data = new ArrayList<String>();
     }
 
@@ -23,6 +25,11 @@ class TestOutput implements OutputPort {
     @Override
     public void print(String message) {
         this.data.add(message);
+    }
+
+    @Override
+    public void exit() {
+
     }
 
 }

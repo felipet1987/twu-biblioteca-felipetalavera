@@ -1,5 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.mocks;
 
+import com.twu.biblioteca.UserService;
 import com.twu.biblioteca.model.User;
 
 public class FakeUserService implements UserService {

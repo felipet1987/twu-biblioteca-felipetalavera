@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 import com.twu.biblioteca.app.AppMenu;
 import com.twu.biblioteca.app.ListMenu;
 import com.twu.biblioteca.app.MainController;
+import com.twu.biblioteca.mocks.TestInput;
+import com.twu.biblioteca.mocks.TestOutput;
 import com.twu.biblioteca.repository.MemoryBookRepository;
 import com.twu.biblioteca.repository.MemoryMovieRepository;
 import com.twu.biblioteca.repository.MemoryUserRepository;

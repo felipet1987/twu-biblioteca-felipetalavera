@@ -1,6 +1,6 @@
 package com.twu.biblioteca;
 
-import com.twu.biblioteca.service.ListBookService;
+import com.twu.biblioteca.mocks.FakeMovieRepository;
 import com.twu.biblioteca.service.ListMovieService;
 import org.junit.Test;
 

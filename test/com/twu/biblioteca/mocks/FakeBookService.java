@@ -1,4 +1,7 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.mocks;
+
+import com.twu.biblioteca.BookService;
+import com.twu.biblioteca.globals;
 
 import java.util.ArrayList;
 import java.util.List;

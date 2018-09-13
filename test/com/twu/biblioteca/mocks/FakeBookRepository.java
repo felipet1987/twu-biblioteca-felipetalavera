@@ -1,5 +1,6 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.mocks;
 
+import com.twu.biblioteca.BookRepository;
 import com.twu.biblioteca.model.Book;
 
 import java.util.ArrayList;
