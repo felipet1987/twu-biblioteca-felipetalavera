@@ -21,5 +21,15 @@ public class ConsoleOutput implements OutputPort {
         System.exit(0);
     }
 
+    @Override
+    public void newPage() {
+        System.out.println("<------------------------------------>");
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
 
 }

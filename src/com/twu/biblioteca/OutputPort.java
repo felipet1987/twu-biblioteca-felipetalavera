@@ -10,4 +10,8 @@ public interface OutputPort {
     void print(String menu);
 
     void exit();
+
+    void newPage();
+
+    void clear();
 }
