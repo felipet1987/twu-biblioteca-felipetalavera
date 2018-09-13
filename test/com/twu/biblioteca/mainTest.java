@@ -115,6 +115,7 @@ public class mainTest {
         assertEquals("ID:NAME:AUTHOR:YEAR", stream.get(1));
 
     }
+
     @Test
     public void whenUseChooseOneShowMovies() {
         List<String> data = new ArrayList<>();
@@ -158,7 +159,6 @@ public class mainTest {
         in.setInput(data);
 
 
-
         mainController.nextOption();
         mainController.nextOption();
 
@@ -169,6 +169,7 @@ public class mainTest {
         assertEquals(globals.THANK_YOU_ENJOY_THE_BOOK, stream.get(7));
 
     }
+
     @Test
     public void unSuccesfulBookCheckout() {
         List<String> data = new ArrayList<>();
@@ -206,6 +207,7 @@ public class mainTest {
         assertEquals(globals.THANK_YOU_ENJOY_THE_MOVIE, stream.get(8));
 
     }
+
     @Test
     public void succesfulMovieReturn() {
         List<String> data = new ArrayList<>();
@@ -224,6 +226,7 @@ public class mainTest {
         assertEquals(globals.THANK_YOU_FOR_RETURNING_THE_MOVIE, stream.get(8));
 
     }
+
     @Test
     public void unSuccesfulMovieReturn() {
         List<String> data = new ArrayList<>();
@@ -231,8 +234,6 @@ public class mainTest {
         data.add("0");
         data.add("movie");
         in.setInput(data);
-
-
 
 
         mainController.nextOption();
