@@ -9,5 +9,5 @@ public interface UserRepository {
 
     boolean login(String number, String password);
 
-    void logout(String number);
+
 }

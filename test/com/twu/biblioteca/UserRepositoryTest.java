@@ -32,11 +32,5 @@ public class UserRepositoryTest {
 
     }
 
-    @Test
-    public void whenLogoutShouldNotBeLogged() {
-        UserRepository repo = new MemoryUserRepository();
-        repo.logout("123-4567");
-        assertEquals(false,repo.findByNumber("123-4567").isLogged());
 
-    }
 }

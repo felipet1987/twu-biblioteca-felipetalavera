@@ -14,8 +14,4 @@ public class FakeUserRepository implements UserRepository {
         return true;
     }
 
-    @Override
-    public void logout(String number) {
-
-    }
 }
