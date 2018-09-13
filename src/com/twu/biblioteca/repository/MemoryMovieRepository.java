@@ -15,6 +15,7 @@ public class MemoryMovieRepository implements MovieRepository {
         movies = new ArrayList<>();
         movies.add(new Movie(1, "movie 1", 2018, "Director 1", 2, false));
         movies.add(new Movie(2, "movie 2", 2018, "Director 2", 2, true));
+        movies.add(new Movie(3, "movie 3", 2018, "Director 2", 2, false));
 
     }
 
@@ -26,7 +27,7 @@ public class MemoryMovieRepository implements MovieRepository {
     @Override
     public void checkout(int id) throws Exception {
         Movie m = findBy(id);
-        if (!m.isCheckedOut()&&m.getId() != -1) {
+        if (!m.isCheckedOut() && m.getId() != -1) {
             m.checkout();
         } else {
             throw new Exception();
@@ -48,7 +49,7 @@ public class MemoryMovieRepository implements MovieRepository {
     @Override
     public void returnMovie(int i) throws Exception {
         Movie m = findBy(i);
-        if (m.isCheckedOut()&&m.getId() != -1) {
+        if (m.isCheckedOut() && m.getId() != -1) {
             m.returnThis();
         } else {
             throw new Exception();
@@ -60,12 +61,13 @@ public class MemoryMovieRepository implements MovieRepository {
     @Override
     public int findIdByName(String name) {
         for (Movie b : movies) {
-            if(b.getName() == name){
+            if (b.getName() == name) {
                 return b.getId();
             }
         }
         return -1;
     }
+
     @Override
     public List<Movie> getCheckedMovies() {
 
