@@ -9,6 +9,7 @@ public class MainController {
         this.menu = menu;
     }
 
+
     public void start() {
         if (menu.login()) {
             menu.showWelcome();
@@ -22,5 +23,9 @@ public class MainController {
         String option = menu.waitForUser();
         menu.executeOption(option);
 
+    }
+
+    public boolean isExited() {
+        return menu.isExited();
     }
 }

@@ -18,6 +18,7 @@ public class ListMenu implements AppMenu {
     private List<String[]> options;
     private boolean logged;
     private String actualOption;
+    private boolean exitStatus;
 
 
     public ListMenu(InputPort in, OutputPort out, UserService userService, BookService bookService, MovieService movieService) {
@@ -28,7 +29,9 @@ public class ListMenu implements AppMenu {
         this.bookService = bookService;
         this.movieService = movieService;
         this.logged = false;
+        this.exitStatus= false;
     }
+
 
 
     private List<String[]> setMenuOptions() {
@@ -91,6 +94,9 @@ public class ListMenu implements AppMenu {
             if (Integer.parseInt(option) == 1) {
                 executeBookCheckout(waitForBookName());
             }
+            if (Integer.parseInt(option) == 0) {
+                executeBookReturn(waitForBookName());
+            }
             return;
         }
         if (this.actualOption == "1") {
@@ -117,12 +123,27 @@ public class ListMenu implements AppMenu {
             showUserDetails();
             return;
         }
+        if (Integer.parseInt(option) == 3) {
+            exit();
+            return;
+        }
 
 
         output.print(globals.INVALID_OPTION);
 
 
 
+    }
+
+    private void exit() {
+        this.exitStatus = true;
+        output.print(globals.EXIT_APP_MESSAGE);
+        output.exit();
+    }
+
+    private void executeBookReturn(String name) {
+        int id = bookService.findByName(name);
+        output.print(bookService.returnBook(id));
     }
 
     private void executeMovieReturn(String name) {
@@ -193,6 +214,11 @@ public class ListMenu implements AppMenu {
         output.print(u.getName());
         output.print(u.getEmail());
         output.print(u.getPhone());
+    }
+
+    @Override
+    public boolean isExited() {
+        return this.exitStatus;
     }
 
 

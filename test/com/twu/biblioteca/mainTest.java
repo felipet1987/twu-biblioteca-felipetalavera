@@ -247,8 +247,19 @@ public class mainTest {
     }
 
 
+    @Test
+    public void exit() {
+        List<String> data = new ArrayList<>();
+        data.add("3");
+        in.setInput(data);
 
+        mainController.nextOption();
 
+        List<String> stream = out.getOutput();
+
+        assertEquals(globals.EXIT_APP_MESSAGE, stream.get(1));
+        assertEquals(true,mainController.isExited());
+    }
 
 
 }

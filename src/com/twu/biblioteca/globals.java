@@ -37,4 +37,5 @@ public class globals {
     public static final String THAT_IS_NOT_A_VALID_BOOK_TO_RETURN = "That is not a valid book to return.";
 
 
+    public static final String EXIT_APP_MESSAGE = "Good Bye!";
 }

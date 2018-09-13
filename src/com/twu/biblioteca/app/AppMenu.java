@@ -28,4 +28,6 @@ public interface AppMenu {
     String waitForMovieName();
 
     void showUserDetails();
+
+    boolean isExited();
 }
