@@ -42,13 +42,5 @@ public class MemoryUserRepository implements UserRepository {
         return false;
     }
 
-    @Override
-    public void logout(String number) {
-        for (User u: users) {
-            if(u.getNumber().equals(number)){
-                u.logout();
-            }
-        }
 
-    }
 }
