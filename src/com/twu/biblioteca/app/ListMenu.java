@@ -90,23 +90,36 @@ public class ListMenu implements AppMenu {
     public void executeOption(String option) {
 
 
+
         if (this.actualOption == "0") {
             if (Integer.parseInt(option) == 1) {
                 executeBookCheckout(waitForBookName());
+                return;
             }
             if (Integer.parseInt(option) == 0) {
                 executeBookReturn(waitForBookName());
+                return;
             }
-            return;
+            if (Integer.parseInt(option) == 2) {
+                return;
+            }
+
         }
         if (this.actualOption == "1") {
             if (Integer.parseInt(option) == 1) {
+
                 executeMovieCheckout(waitForMovieName());
+                return;
+
             }
             if (Integer.parseInt(option) == 0) {
+                showCheckoutMovies();
                 executeMovieReturn(waitForMovieName());
+                return;
             }
-            return;
+            if (Integer.parseInt(option) == 2) {
+                return;
+            }
         }
 
         if (Integer.parseInt(option) == 0) {
@@ -133,6 +146,13 @@ public class ListMenu implements AppMenu {
 
 
 
+    }
+
+    private void showCheckoutMovies() {
+        List<String> checkedMovies = movieService.showCheckedMovies();
+        for (String b: checkedMovies) {
+            output.print(b);
+        }
     }
 
     private void exit() {

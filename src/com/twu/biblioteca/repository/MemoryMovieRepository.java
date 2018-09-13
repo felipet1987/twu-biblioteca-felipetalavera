@@ -66,4 +66,9 @@ public class MemoryMovieRepository implements MovieRepository {
         }
         return -1;
     }
+    @Override
+    public List<Movie> getCheckedMovies() {
+
+        return null;
+    }
 }

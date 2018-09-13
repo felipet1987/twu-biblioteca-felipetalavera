@@ -34,4 +34,9 @@ public class FakeBookService implements BookService {
         }
         return 0;
     }
+
+    @Override
+    public List<String> showCheckBooks() {
+        return null;
+    }
 }

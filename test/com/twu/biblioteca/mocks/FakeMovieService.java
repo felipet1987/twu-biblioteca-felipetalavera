@@ -16,7 +16,7 @@ public class FakeMovieService implements MovieService {
 
     @Override
     public String returnMovie(int id) {
-        return null;
+        return globals.THANK_YOU_FOR_RETURNING_THE_MOVIE;
     }
 
     @Override
@@ -33,6 +33,15 @@ public class FakeMovieService implements MovieService {
             return 0;
         }
         return 1;
+    }
+
+    @Override
+    public List<String> showCheckedMovies() {
+
+        List<String> list = new ArrayList<>();
+        list.add("1. movie2");
+        list.add("2. movie3");
+        return list;
     }
 
 }

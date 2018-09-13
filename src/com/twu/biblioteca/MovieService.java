@@ -10,4 +10,6 @@ public interface MovieService {
     String checkout(int id);
 
     int findByName(String name);
+
+    List<String> showCheckedMovies();
 }

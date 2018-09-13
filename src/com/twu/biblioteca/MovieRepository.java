@@ -14,4 +14,6 @@ public interface MovieRepository {
     void returnMovie(int i) throws Exception;
 
     int findIdByName(String name);
+
+    List<Movie> getCheckedMovies();
 }

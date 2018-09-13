@@ -135,8 +135,10 @@ public class MenuTest {
         List<String> stream = out.getOutput();
         assertEquals("ID:NAME:AUTHOR:YEAR", stream.get(0));
         assertEquals("1:name:author:2000", stream.get(1));
-        assertEquals("0 .return book", stream.get(2));
-        assertEquals("1 .checkout book", stream.get(3));
+        assertEquals("0 ."+globals.RETURN_BOOK, stream.get(2));
+        assertEquals("1 ."+globals.CHECKOUT_BOOK, stream.get(3));
+        assertEquals("2 ."+globals.RETURN_MENU, stream.get(4));
+
 
     }
 
@@ -145,10 +147,11 @@ public class MenuTest {
         menu.showMovieMenu();
 
         List<String> stream = out.getOutput();
-        assertEquals("ID:NAME:YEAR:DIRECTOR:RATING", stream.get(0));
+        assertEquals(globals.MOVIE_HEADER,stream.get(0));
         assertEquals("1:name:2000:director:3", stream.get(1));
-        assertEquals("0 .return movie", stream.get(2));
-        assertEquals("1 .checkout movie", stream.get(3));
+        assertEquals("0 ."+globals.RETURN_MOVIE, stream.get(2));
+        assertEquals("1 ."+globals.CHECKOUT_MOVIE, stream.get(3));
+        assertEquals("2 ."+globals.RETURN_MENU,stream.get(4));
 
     }
 
@@ -228,4 +231,29 @@ public class MenuTest {
         assertEquals(globals.THAT_MOVIE_IS_NOT_AVAILABLE, stream.get(1));
 
     }
+    @Test
+    public void showMoviesAndThenUnSuccesfulReturn() {
+
+        List<String> data = new ArrayList<>();
+        data.add("1");
+        in.setInput(data);
+
+
+        menu.setCurrentOption("1");
+        menu.executeOption("0");
+
+
+
+        List<String> stream = out.getOutput();
+        assertEquals("1. movie2", stream.get(0));
+        assertEquals("2. movie3", stream.get(1));
+        assertEquals(globals.PLEASE_ENTER_NAME_OF_MOVIE, stream.get(2));
+        assertEquals(globals.THANK_YOU_FOR_RETURNING_THE_MOVIE, stream.get(3));
+
+    }
+
+
+
+
+
 }

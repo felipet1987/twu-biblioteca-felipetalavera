@@ -51,4 +51,15 @@ public class ListMovieService implements MovieService {
     public int findByName(String name) {
         return repo.findIdByName(name);
     }
+
+    @Override
+    public List<String> showCheckedMovies() {
+        List<String> list = new ArrayList<>();
+        List<Movie> movies = repo.getCheckedMovies();
+        for (Movie m: movies) {
+            list.add(m.getId() +". "+m.getName());
+        }
+
+        return list;
+    }
 }

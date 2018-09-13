@@ -16,6 +16,7 @@ public class MovieServiceTest {
 
         List<String[]> movieListView = service.getMovies();
 
+
         String[] expected = {"1", "name", "2000", "director","3"};
 
 
@@ -68,5 +69,11 @@ public class MovieServiceTest {
 
     }
 
-
+    @Test
+    public void returnCheckedBooks() {
+        MovieRepository repo = new FakeMovieRepository();
+        MovieService service = new ListMovieService(repo);
+        List<String> list = service.showCheckedMovies();
+        assertEquals("1. movie 1",list.get(0));
+    }
 }
