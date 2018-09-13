@@ -246,6 +246,44 @@ public class mainTest {
 
     }
 
+    @Test
+    public void succesfulbookReturn() {
+        List<String> data = new ArrayList<>();
+        data.add("0");
+        data.add("0");
+        data.add("Book 2");
+        in.setInput(data);
+
+        mainController.nextOption();
+        mainController.nextOption();
+
+
+        List<String> stream = out.getOutput();
+
+        assertEquals(globals.PLEASE_ENTER_NAME_OF_BOOK, stream.get(6));
+        assertEquals(globals.THANK_YOU_FOR_RETURNING_THE_BOOK, stream.get(7));
+
+    }
+
+    @Test
+    public void unSuccesfulBookReturn() {
+        List<String> data = new ArrayList<>();
+        data.add("0");
+        data.add("0");
+        data.add("Book 1");
+        in.setInput(data);
+
+        mainController.nextOption();
+        mainController.nextOption();
+
+
+        List<String> stream = out.getOutput();
+
+        assertEquals(globals.PLEASE_ENTER_NAME_OF_BOOK, stream.get(6));
+        assertEquals(globals.THAT_IS_NOT_A_VALID_BOOK_TO_RETURN, stream.get(7));
+
+
+    }
 
     @Test
     public void exit() {
