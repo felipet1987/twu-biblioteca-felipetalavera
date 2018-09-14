@@ -19,11 +19,20 @@ public class ListMovieService implements MovieService {
     @Override
     public List<String[]> getMovies() {
         List<String[]> list = new ArrayList<>();
-        List<Movie> movies = repo.getMovies();
-        for (Movie m: movies) {
-            list.add(new String[]{String.valueOf(m.getId()),m.getName(),String.valueOf(m.getYear()),m.getDirector(),String.valueOf(m.getRating())});
+        List<Movie> movies = repo.getReturnedMovies();
+        for (Movie m : movies) {
+            list.add(MovieToString(m));
         }
         return list;
+    }
+
+    private String[] MovieToString(Movie m) {
+        return new String[]{
+                String.valueOf(m.getId()),
+                m.getName(),
+                String.valueOf(m.getYear()),
+                m.getDirector(),
+                String.valueOf(m.getRating())};
     }
 
     @Override
@@ -37,11 +46,11 @@ public class ListMovieService implements MovieService {
     }
 
     @Override
-    public String checkout(int id){
-        try{
+    public String checkout(int id) {
+        try {
             repo.checkout(id);
             return globals.THANK_YOU_ENJOY_THE_MOVIE;
-        }catch (Exception e){
+        } catch (Exception e) {
             return globals.THAT_MOVIE_IS_NOT_AVAILABLE;
         }
 
@@ -56,8 +65,8 @@ public class ListMovieService implements MovieService {
     public List<String> showCheckedMovies() {
         List<String> list = new ArrayList<>();
         List<Movie> movies = repo.getCheckedMovies();
-        for (Movie m: movies) {
-            list.add(m.getId() +". "+m.getName());
+        for (Movie m : movies) {
+            list.add(String.valueOf(m.getId()) + ". " + m.getName());
         }
 
         return list;

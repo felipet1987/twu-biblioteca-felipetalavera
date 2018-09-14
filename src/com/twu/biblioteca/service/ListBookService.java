@@ -20,13 +20,11 @@ public class ListBookService implements BookService {
     public List<String[]> getBooks() {
 
         List<String[]> list = new ArrayList<>();
-        List<Book> books = repo.getBookList();
+        List<Book> books = repo.getReturnedBooks();
 
         for (Book b : books) {
-            if (b.isCheckedOut()) {
-                String[] bookDetails = {String.valueOf(b.getId()), b.getName(), b.getAuthor(), String.valueOf(b.getYear())};
-                list.add(bookDetails);
-            }
+            String[] bookDetails = {String.valueOf(b.getId()), b.getName(), b.getAuthor(), String.valueOf(b.getYear())};
+            list.add(bookDetails);
         }
         return list;
     }
@@ -54,5 +52,16 @@ public class ListBookService implements BookService {
     @Override
     public int findByName(String name) {
         return repo.findIdByName(name);
+    }
+
+    @Override
+    public List<String> showCheckoutBooks() {
+        List<String> list = new ArrayList<>();
+        List<Book> books = repo.getCheckedBooks();
+        for (Book b : books) {
+            list.add(String.valueOf(b.getId()) + ". " + b.getName());
+        }
+
+        return list;
     }
 }

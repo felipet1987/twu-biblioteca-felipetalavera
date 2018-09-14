@@ -20,8 +20,6 @@ public class BibliotecaApp {
         MainController controller = new MainController(menu);
 
 
-
-
         controller.start();
         while (!controller.isExited()) {
             controller.nextOption();
@@ -36,6 +34,10 @@ public class BibliotecaApp {
         UserService userService = new ListUserService(new MemoryUserRepository());
         BookService bookService = new ListBookService(new MemoryBookRepository());
         MovieService movieService = new ListMovieService(new MemoryMovieRepository());
+
+
         return new ListMenu(in, out, userService, bookService, movieService);
+
+
     }
 }
