@@ -16,15 +16,15 @@ public class FakeBookService implements BookService {
 
     @Override
     public String checkout(int id) {
-        if(id == 1){
+        if(id == 0){
             return globals.THAT_BOOK_IS_NOT_AVAILABLE;
         }
-        return "Thank you! Enjoy the book";
+        return globals.THANK_YOU_ENJOY_THE_BOOK;
     }
 
     @Override
     public String returnBook(int id) {
-        return null;
+        return globals.THANK_YOU_FOR_RETURNING_THE_BOOK;
     }
 
     @Override
@@ -36,7 +36,10 @@ public class FakeBookService implements BookService {
     }
 
     @Override
-    public List<String> showCheckBooks() {
-        return null;
+    public List<String> showCheckoutBooks() {
+        List<String> list = new ArrayList<>();
+        list.add("1. book2");
+        list.add("2. book3");
+        return list;
     }
 }

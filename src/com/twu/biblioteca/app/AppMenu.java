@@ -17,7 +17,6 @@ public interface AppMenu {
 
     void showMovieMenu();
 
-    boolean isLogged();
 
     void setCurrentOption(String i);
 
@@ -30,4 +29,7 @@ public interface AppMenu {
     void showUserDetails();
 
     boolean isExited();
+
+    void newPage();
+
 }
