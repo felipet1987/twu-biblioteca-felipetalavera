@@ -32,4 +32,14 @@ public class TestOutput implements OutputPort {
 
     }
 
+    @Override
+    public void newPage() {
+
+    }
+
+    @Override
+    public void clear() {
+        data = new ArrayList<String>();
+    }
+
 }
