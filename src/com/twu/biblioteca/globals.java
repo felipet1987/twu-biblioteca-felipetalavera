@@ -9,14 +9,14 @@ public class globals {
     public static final String EXIT_APP = "exit app";
     public static final String ENTER_LIBRARY_NUMBER = "enter library number";
     public static final String ENTER_PASSWORD = "enter password";
-    public static final String ID_NAME_AUTHOR_YEAR = "ID:NAME:AUTHOR:YEAR";
+    public static final String BOOK_HEADER = "ID:NAME:AUTHOR:YEAR";
     public static final String PLEASE_ENTER_AN_OPTION = "please enter an option";
     public static final String INVALID_OPTION = "Invalid Option";
 
 
-    public static final String PLEASE_ENTER_NAME_OF_BOOK = "please enter name of book";
+    public static final String PLEASE_ENTER_ID_OF_BOOK = "please enter id of book";
 
-    public static final String PLEASE_ENTER_NAME_OF_MOVIE = "please enter name of movie";
+    public static final String ENTER_ID_OF_MOVIE = "please enter id of movie";
 
 
     public static final String MOVIE_HEADER = "ID:NAME:YEAR:DIRECTOR:RATING";
@@ -38,4 +38,6 @@ public class globals {
 
 
     public static final String EXIT_APP_MESSAGE = "Good Bye!";
+    public static final String RETURN_MENU = "return to main menu";
+    public static final String BACK_TO_MENU = "press any key to return";
 }
