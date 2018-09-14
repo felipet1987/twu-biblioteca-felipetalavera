@@ -1,16 +1,9 @@
 package com.twu.biblioteca;
 
 import com.twu.biblioteca.app.AppMenu;
-import com.twu.biblioteca.app.ListMenu;
 import com.twu.biblioteca.app.MainController;
 import com.twu.biblioteca.mocks.TestInput;
 import com.twu.biblioteca.mocks.TestOutput;
-import com.twu.biblioteca.repository.MemoryBookRepository;
-import com.twu.biblioteca.repository.MemoryMovieRepository;
-import com.twu.biblioteca.repository.MemoryUserRepository;
-import com.twu.biblioteca.service.ListBookService;
-import com.twu.biblioteca.service.ListMovieService;
-import com.twu.biblioteca.service.ListUserService;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,10 +25,9 @@ public class mainTest {
     public void setUp() {
         in = new TestInput();
         out = new TestOutput();
-        menu = new FakeMenu(in,out);
+        menu = new FakeMenu(in, out);
         mainController = new MainController(menu);
     }
-
 
 
     @Test
@@ -73,11 +65,8 @@ public class mainTest {
 
         List<String> stream = out.getOutput();
 
-        for (String s:stream) {
-            System.out.println(s);
-        }
         assertEquals(globals.PLEASE_ENTER_AN_OPTION, stream.get(0));
-        assertEquals(globals.ID_NAME_AUTHOR_YEAR, stream.get(1));
+        assertEquals(globals.BOOK_HEADER, stream.get(1));
 
     }
 

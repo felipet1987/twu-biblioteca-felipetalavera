@@ -43,8 +43,8 @@ public class FakeMenu implements com.twu.biblioteca.app.AppMenu {
 
     @Override
     public void executeOption(String option) {
-        if(option == "0"){
-            out.print(globals.ID_NAME_AUTHOR_YEAR);
+        if (option == "0") {
+            out.print(globals.BOOK_HEADER);
         }
 
     }
@@ -59,10 +59,6 @@ public class FakeMenu implements com.twu.biblioteca.app.AppMenu {
 
     }
 
-    @Override
-    public boolean isLogged() {
-        return false;
-    }
 
     @Override
     public void setCurrentOption(String i) {
