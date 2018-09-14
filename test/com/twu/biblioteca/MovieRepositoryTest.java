@@ -13,9 +13,8 @@ public class MovieRepositoryTest {
     public void shouldReturnListOfMovies() {
         MovieRepository repo = new MemoryMovieRepository();
 
-        List<Movie> list = repo.getMovies();
+        List<Movie> list = repo.getReturnedMovies();
         Movie expected = new Movie(1, "movie 1", 2018, "Director 1", 2, false);
-
 
 
         assertEquals(expected.getId(), list.get(0).getId());
@@ -32,7 +31,7 @@ public class MovieRepositoryTest {
     public void shouldfindOne() {
         MovieRepository repo = new MemoryMovieRepository();
         Movie m = repo.findBy(1);
-        assertEquals(m.getName(),"movie 1");
+        assertEquals(m.getName(), "movie 1");
     }
 
     @Test
@@ -68,9 +67,18 @@ public class MovieRepositoryTest {
     }
 
     @Test
-    public void findByIncorrectNameShoudlReturnMinusOne()  {
+    public void findByIncorrectNameShoudlReturnMinusOne() {
         MovieRepository repo = new MemoryMovieRepository();
-        assertEquals(-1,repo.findIdByName("noname"));
+        assertEquals(-1, repo.findIdByName("noname"));
+
+    }
+
+    @Test
+    public void name() throws Exception {
+        MovieRepository repo = new MemoryMovieRepository();
+        assertEquals(1, repo.getCheckedMovies().size());
+        repo.checkout(1);
+        assertEquals(2, repo.getCheckedMovies().size());
 
     }
 }

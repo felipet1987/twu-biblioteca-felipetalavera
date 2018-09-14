@@ -5,7 +5,7 @@ import com.twu.biblioteca.model.Movie;
 import java.util.List;
 
 public interface MovieRepository {
-    List<Movie> getMovies();
+    List<Movie> getReturnedMovies();
 
     void checkout(int i) throws Exception;
 

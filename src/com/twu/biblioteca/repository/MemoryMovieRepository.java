@@ -20,8 +20,17 @@ public class MemoryMovieRepository implements MovieRepository {
     }
 
     @Override
-    public List<Movie> getMovies() {
-        return movies;
+    public List<Movie> getReturnedMovies() {
+
+        List<Movie> list = new ArrayList<>();
+
+        for (Movie m: movies) {
+            if(!m.isCheckedOut()){
+                list.add(m);
+            }
+        }
+
+        return list;
     }
 
     @Override
@@ -71,6 +80,12 @@ public class MemoryMovieRepository implements MovieRepository {
     @Override
     public List<Movie> getCheckedMovies() {
 
-        return null;
+        List<Movie> list = new ArrayList<>(123);
+        for (Movie m: movies) {
+            if(m.isCheckedOut()){
+                list.add(m);
+            }
+        }
+        return list;
     }
 }
