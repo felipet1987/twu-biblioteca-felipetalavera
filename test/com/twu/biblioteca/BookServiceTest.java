@@ -36,7 +36,7 @@ public class BookServiceTest {
         BookRepository repo = new FakeBookRepository();
         BookService service = new ListBookService(repo);
 
-        assertEquals("Thank you! Enjoy the book",service.checkout(0));
+        assertEquals("Thank you! Enjoy the book", service.checkout(0));
 
     }
 
@@ -54,26 +54,26 @@ public class BookServiceTest {
 
         BookRepository repo = new FakeBookRepository();
         BookService service = new ListBookService(repo);
-        assertEquals("Thank you for returning the book.",service.returnBook(0));
+        assertEquals("Thank you for returning the book.", service.returnBook(0));
 
 
     }
 
     @Test
     public void UnSuccessfulReturn() {
-
         BookRepository repo = new FakeBookRepository();
         BookService service = new ListBookService(repo);
-        assertEquals("That is not a valid book to return.",service.returnBook(1));
 
-
+        assertEquals("That is not a valid book to return.", service.returnBook(1));
     }
 
+    @Test
+    public void getCheckoutBooks() {
+        BookRepository repo = new FakeBookRepository();
+        BookService service = new ListBookService(repo);
 
+        List<String> list = service.showCheckoutBooks();
+        assertEquals("1. book 1",list.get(0));
 
-
-
-
-
-
+    }
 }

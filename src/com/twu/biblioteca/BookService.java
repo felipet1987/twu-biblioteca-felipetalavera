@@ -10,4 +10,6 @@ public interface BookService {
     String returnBook(int id);
 
     int findByName(String name);
+
+    List<String> showCheckoutBooks();
 }
