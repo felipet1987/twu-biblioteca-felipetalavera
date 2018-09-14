@@ -13,10 +13,11 @@ public class BookRepositoryTest {
     public void shouldGetBooks() {
         BookRepository repo = new MemoryBookRepository();
 
-        List<Book> list = repo.getBookList();
+        List<Book> list = repo.getReturnedBooks();
         Book expected = new Book(1, "Book 1", "Author 1", 2000, false);
         assertEquals(expected.getId(), list.get(0).getId());
         assertEquals(expected.getName(), list.get(0).getName());
+        assertEquals(2,list.size());
 
     }
 
@@ -24,6 +25,7 @@ public class BookRepositoryTest {
     public void shouldReturnBook() throws Exception {
         BookRepository repo = new MemoryBookRepository();
         repo.returnBook(2);
+
 
         assertEquals(false, repo.findBy(2).isCheckedOut());
 
@@ -63,4 +65,5 @@ public class BookRepositoryTest {
         BookRepository repo = new MemoryBookRepository();
         assertEquals(2,repo.findIdByName("Book 2"));
     }
+
 }

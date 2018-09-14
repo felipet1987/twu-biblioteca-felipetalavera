@@ -22,14 +22,20 @@ public class MemoryBookRepository implements BookRepository {
     }
 
     @Override
-    public List<Book> getBookList() {
-        return books;
+    public List<Book> getReturnedBooks() {
+        List<Book> returnedBooks = new ArrayList<>();
+        for (Book b:books) {
+            if(!b.isCheckedOut()){
+                returnedBooks.add(b);
+            }
+        }
+        return returnedBooks;
     }
 
     @Override
     public void returnBook(int id) throws Exception {
         Book b = findBy(id);
-        if (b.isCheckedOut()) {
+        if (b.isCheckedOut()&&b.getId()!=-1) {
             b.returnBook();
         } else {
             throw  new Exception();
@@ -72,5 +78,16 @@ public class MemoryBookRepository implements BookRepository {
             }
         }
         return -1;
+    }
+
+    @Override
+    public List<Book> getCheckedBooks() {
+        List<Book> list = new ArrayList<>(123);
+        for (Book b: books) {
+            if(b.isCheckedOut()){
+                list.add(b);
+            }
+        }
+        return list;
     }
 }
