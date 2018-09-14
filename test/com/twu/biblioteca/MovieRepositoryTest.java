@@ -73,12 +73,5 @@ public class MovieRepositoryTest {
 
     }
 
-    @Test
-    public void name() throws Exception {
-        MovieRepository repo = new MemoryMovieRepository();
-        assertEquals(1, repo.getCheckedMovies().size());
-        repo.checkout(1);
-        assertEquals(2, repo.getCheckedMovies().size());
 
-    }
 }
